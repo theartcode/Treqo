@@ -21,9 +21,9 @@ export default function DesignPage() {
       <CourseEcosystem />
       {/*<Curriculum />*/}
       <AdmissionCriteria />
-      <FeaturesSection />
       <Design2 />
       <Courses />
+      <FeaturesSection />
       <TacSmallFooter />
     </>
   );

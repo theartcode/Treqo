@@ -1,186 +1,135 @@
 "use client";
 
-import { useRef } from "react";
-import {
-  motion,
-  useScroll,
-  useTransform,
-  useSpring
-} from "framer-motion";
-import { 
-  BookOpen, 
-  Wrench, 
-  LineChart, 
-  Mic, 
-  CheckCircle2, 
-  TrendingUp, 
-  Layers 
-} from "lucide-react";
+import { Users, Lightbulb } from "lucide-react";
 
-const cards = [
-  {
-    tag: "Phase 01 — Foundation",
-    title: "Master The",
-    highlight: "Systems.",
-    description: "Before execution comes architecture. Master the structured frameworks across marketing, behavioral psychology, and revenue systems.",
-    points: ["Consumer Psychology", "Offer Architecture", "Market Positioning"],
-    advantage: "Develop the strategic mind of a Creative Director.",
-    tools: "Miro • Notion • Market Intelligence",
-    icon: BookOpen,
-  },
-  {
-    tag: "Phase 02 — Simulation",
-    title: "Build The",
-    highlight: "Execution.",
-    description: "Theory ends here. Collaborate in elite teams to execute real-world business simulations. Engage in hands-on tool experimentation.",
-    points: ["Advanced UI/UX", "Cinematic Editing", "Conversion Copywriting"],
-    advantage: "Build a premium, client-ready portfolio.",
-    tools: "Figma • Premiere Pro • After Effects",
-    icon: Wrench,
-  },
-  {
-    tag: "Phase 03 — Analytics",
-    title: "Optimize With",
-    highlight: "Data.",
-    description: "Refine your systems using deep analytics, performance metrics, and aggressive A/B testing feedback loops.",
-    points: ["Media Buying", "Funnel Optimization", "Retention Scaling"],
-    advantage: "Scale campaigns strictly on mathematical ROI.",
-    tools: "Meta Ads • Google Analytics • Hotjar",
-    icon: LineChart,
-  },
-  {
-    tag: "Phase 04 — Validation",
-    title: "Pitch To",
-    highlight: "Founders.",
-    description: "Skip the cold applications. Present your final, polished solutions directly to industry leaders and startup founders.",
-    points: ["Executive Comm", "Live Pitching", "Negotiation Frameworks"],
-    advantage: "Secure placements through our 50+ partner network.",
-    tools: "Pitch Decks • Case Studies • Networking",
-    icon: Mic,
-  }
-];
-
-export default function TacExecutionPipeline() {
-  const sectionRef = useRef<HTMLDivElement>(null);
-
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start start", "end end"]
-  });
-
-  const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 80,
-    damping: 30,
-    restDelta: 0.001
-  });
-
+export default function TacMentorStory() {
   return (
-    <section className="bg-[#FCF8E3] font-sans">
-      
-      {/* Header */}
-      <div className="w-full text-center px-[5%] pt-32 pb-16">
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-black/5 border border-black/10 mb-6">
-          <Layers className="w-4 h-4 text-[#1D1D1D]" />
-          <span className="text-[10px] tracking-[0.2em] uppercase font-bold text-[#1D1D1D]">
-            Our Methodology
-          </span>
+    <section className="bg-[#FBF8E4] font-sans w-full px-[5%] py-28 overflow-hidden">
+      <div className="max-w-[1150px] mx-auto w-full space-y-24">
+
+        {/* SECTION 1 */}
+        <div className="grid md:grid-cols-2 gap-14 items-center">
+          
+          <div className="order-1">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[#1D1D1D]/20 mb-5">
+              <Users className="w-4 h-4 text-[#1D1D1D]" />
+              <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-[#1D1D1D]">
+                TAC Faculty
+              </span>
+            </div>
+
+            <h2 className="text-3xl md:text-4xl font-black text-[#1D1D1D] mb-4">
+              A team that supports you <br />
+              <span className="font-serif italic font-light text-[#FFC62A]">
+                every step
+              </span>
+            </h2>
+
+            <p className="text-[#1D1D1D]/70 text-base leading-relaxed max-w-md">
+              TAC mentors are professionals who have worked across design,
+              marketing, and product strategy. They focus on explaining real
+              systems used in the industry so students understand how things
+              actually work.
+              <br /><br />
+              Every mentor brings practical insights and case studies that
+              simplify complex concepts and make learning engaging.
+            </p>
+          </div>
+
+          <div className="order-2 rounded-2xl overflow-hidden shadow-sm">
+            <img
+              src="https://images.unsplash.com/photo-1522071820081-009f0129c71c"
+              alt="Mentors"
+              className="object-cover w-full h-[320px]"
+            />
+          </div>
         </div>
-        <h2 className="text-4xl md:text-6xl font-semibold text-[#1D1D1D] tracking-tighter leading-[1.05]">
-          The Execution <br />
-          <span className="font-serif italic font-medium text-[#FFC62A] tracking-normal">
-            Pipeline.
-          </span>
-        </h2>
-      </div>
 
-      <div ref={sectionRef} className="relative h-[400vh]">
-        <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden px-[5%]">
+        {/* SECTION 2 */}
+        <div className="grid md:grid-cols-2 gap-14 items-center">
 
-          {cards.map((card, index) => {
-            const step = 1 / cards.length;
-            const start = index * step;
-            const end = (index + 1) * step;
+          <div className="order-2 md:order-1 rounded-2xl overflow-hidden shadow-sm">
+            <img
+              src="https://images.unsplash.com/photo-1519389950473-47ba0277781c"
+              alt="Teaching"
+              className="object-cover w-full h-[320px]"
+            />
+          </div>
 
-            // Natural exit: Shrink and Fade to Left
-            const x = useTransform(smoothProgress, [start, end], ["0vw", "-100vw"]);
-            const opacity = useTransform(smoothProgress, [start, start + 0.1, end - 0.1, end], [0, 1, 1, 0]);
-            const scale = useTransform(smoothProgress, [start, end], [1, 0.7]);
-            const rotate = useTransform(smoothProgress, [start, end], [0, -5]);
-            const filter = useTransform(smoothProgress, [start, end], ["blur(0px)", "blur(10px)"]);
+          <div className="order-1 md:order-2">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[#1D1D1D]/20 mb-5">
+              <Lightbulb className="w-4 h-4 text-[#1D1D1D]" />
+              <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-[#1D1D1D]">
+                TAC Method
+              </span>
+            </div>
 
-            return (
-              <motion.div
-                key={index}
-                style={{
-                  x,
-                  opacity,
-                  scale,
-                  rotate,
-                  filter,
-                  zIndex: cards.length - index,
-                }}
-                className="absolute w-full max-w-[1100px] h-[500px] md:h-[600px]
-                           bg-white border border-black/5 rounded-[3rem] 
-                           shadow-[0_40px_100px_rgba(0,0,0,0.04)]
-                           overflow-hidden flex flex-col justify-center"
-              >
-                <div className="relative z-10 px-8 py-10 md:px-16 md:py-0 flex flex-col md:flex-row gap-8 md:gap-12 items-center h-full">
-                  
-                  {/* Left Side */}
-                  <div className="flex-1 w-full flex flex-col justify-center">
-                    <div className="flex items-center gap-4 mb-8">
-                      <div className="w-12 h-12 rounded-xl bg-[#1D1D1D] flex items-center justify-center text-[#FFC62A] shadow-sm">
-                        <card.icon className="w-6 h-6" />
-                      </div>
-                      <span className="inline-block px-4 py-1.5 text-[10px] font-bold tracking-[0.2em] uppercase rounded-full bg-black/5 text-gray-500 border border-black/5">
-                        {card.tag}
-                      </span>
-                    </div>
+            <h2 className="text-3xl md:text-4xl font-black text-[#1D1D1D] mb-4">
+              Making complex ideas <br />
+              <span className="font-serif italic font-light text-[#FFC62A]">
+                simple
+              </span>
+            </h2>
 
-                    <h3 className="text-4xl md:text-5xl font-semibold text-[#1D1D1D] tracking-tighter leading-[1.05] mb-6">
-                      {card.title} <br />
-                      <span className="font-serif italic font-medium text-[#FFC62A] tracking-normal">
-                        {card.highlight}
-                      </span>
-                    </h3>
-
-                    <p className="text-gray-500 text-base md:text-lg max-w-xl leading-relaxed font-medium">
-                      {card.description}
-                    </p>
-                  </div>
-
-                  {/* Right Side */}
-                  <div className="flex-1 w-full flex flex-col justify-center border-t md:border-t-0 md:border-l border-black/5 pt-6 md:pt-0 md:pl-12">
-                    <div className="mb-8">
-                      <p className="text-[10px] font-bold text-gray-300 uppercase tracking-widest mb-4">Core Focus</p>
-                      <div className="space-y-4">
-                        {card.points.map((point, i) => (
-                          <div key={i} className="flex items-start gap-3">
-                            <CheckCircle2 className="w-5 h-5 text-[#365c47] flex-shrink-0" />
-                            <span className="text-[#1D1D1D] font-semibold text-sm md:text-base">{point}</span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-
-                    <div className="space-y-3 bg-[#FCF8E3] p-6 rounded-2xl border border-black/5">
-                      <div className="flex items-start gap-2">
-                        <TrendingUp className="w-5 h-5 text-[#FFC62A] flex-shrink-0" />
-                        <p className="text-[#1D1D1D] font-bold text-sm leading-tight">
-                          {card.advantage}
-                        </p>
-                      </div>
-                      <p className="text-gray-400 text-[10px] font-bold uppercase tracking-widest pt-3 border-t border-black/5">
-                        Stack: {card.tools}
-                      </p>
-                    </div>
-                  </div>
-
-                </div>
-              </motion.div>
-            );
-          })}
+            <p className="text-[#1D1D1D]/70 text-base leading-relaxed max-w-md">
+              At TAC, concepts are broken down into simple frameworks so
+              students can learn faster. Mentors focus on the reasoning behind
+              every idea, ensuring that knowledge is practical and useful.
+              <br /><br />
+              Through real-world examples and interactive sessions, students
+              develop clarity and confidence.
+            </p>
+          </div>
         </div>
+
+        {/* LONG TEXT SECTION */}
+        <div className="max-w-[850px] space-y-8 w-full">
+
+          <div>
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[#1D1D1D]/20 mb-5">
+              <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-[#1D1D1D]">
+                TAC Students
+              </span>
+            </div>
+
+            <h2 className="text-3xl md:text-4xl font-black text-[#1D1D1D] mb-4">
+              For people who want more out of learning
+            </h2>
+
+            <p className="text-[#1D1D1D]/70 leading-relaxed text-base">
+              TAC was created for students who want to build meaningful
+              skills. Our mentors understand that everyone learns differently,
+              which is why concepts are explained using practical examples,
+              projects, and collaborative sessions.
+              <br /><br />
+              Instead of memorizing theory, students learn how to think,
+              analyze, and solve real-world problems.
+            </p>
+          </div>
+
+          <div>
+            <h3 className="text-xl font-bold text-[#1D1D1D] mb-2">
+              The TAC experience
+            </h3>
+
+            <p className="text-[#1D1D1D]/70 leading-relaxed text-base">
+              TAC is more than just a classroom. It is an environment where
+              students build confidence, develop new perspectives, and grow
+              into capable professionals ready for the industry.
+            </p>
+          </div>
+
+        </div>
+
+        {/* BANNER IMAGE */}
+        <div className="rounded-2xl overflow-hidden shadow-sm w-full">
+          <img
+            src="https://images.unsplash.com/photo-1531482615713-2afd69097998"
+            alt="TAC learning"
+            className="object-cover w-full h-[300px] md:h-[420px]"
+          />
+        </div>
+
       </div>
     </section>
   );
