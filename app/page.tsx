@@ -1,53 +1,72 @@
-import CaseStudiesSection from "@/components/strategy/CaseStudiesSection";
-import { TrustedBySlider } from "@/components/strategy/TrustedBySlider";
-import { FrameworkSection } from "@/components/strategy/FrameworkSection";
-import HeroSection from "@/components/strategy/HeroSection";
 import Navbar from "@/components/strategy/Navbar";
-import { ProgramsSection } from "@/components/strategy/ProgramSection";
-//import ProjectsStudiesSection from "@/components/stratergy/projects";
-import TermToolsPage from "@/components/strategy/TermToolsSection";
-import Image from "next/image";
-import { ToolStackSection } from "@/components/strategy/ExecutionSection";
-import MarketingGrowthEngine from "@/components/strategy/Digital";
-import Design2 from "@/components/strategy/Design2";
-import DigitalMarketingFuture from "@/components/strategy/why";
-import TacFooterLight from "@/components/strategy/footer";
+import HeroSection from "@/components/strategy/HeroSection";
 import WhyTAC from "@/components/strategy/WhyTac";
-import Testimonials from "@/components/strategy/Testimonials";
-import FriendlyKnowledgeHub from "@/components/strategy/Courses";
-import Tacsuite from "@/components/strategy/TACsuite";
-import Tools from "@/components/strategy/Tools";
-import TacExecutionPipeline from "@/components/strategy/sidescroll";
-import FAQSection from "@/components/strategy/FAQ";
+
+import { ProgramsSection } from "@/components/strategy/ProgramsSection";
+import { FrameworkSection } from "@/components/strategy/FrameworkSection";
+import { TrustedBySlider } from "@/components/strategy/TrustedBySlider";
+
+import CaseStudiesSection from "@/components/strategy/CaseStudiesSection";
 import Case2StudiesSection from "@/components/strategy/casestudy2";
 
+import TacExecutionPipeline from "@/components/strategy/sidescroll";
+import TermToolsPage from "@/components/strategy/TermToolsSection";
 
+import { ToolStackSection } from "@/components/strategy/ExecutionSection";
+import MarketingGrowthEngine from "@/components/strategy/Digital";
 
+import Design2 from "@/components/strategy/Design2";
+import DigitalMarketingFuture from "@/components/strategy/why";
 
+import Tacsuite from "@/components/strategy/TACsuite";
+import FriendlyKnowledgeHub from "@/components/strategy/Courses";
+import Tools from "@/components/strategy/Tools";
 
+import Testimonials from "@/components/strategy/Testimonials";
+import FAQSection from "@/components/strategy/FAQ";
+import TacFooterLight from "@/components/strategy/footer";
 
 export default function Home() {
   return (
     <>
       <Navbar />
+
       <HeroSection />
+
       <WhyTAC />
+
       <ProgramsSection />
+
       <FrameworkSection />
+
       <TrustedBySlider />
+
       <CaseStudiesSection />
+
       <Case2StudiesSection />
+
       <TacExecutionPipeline />
+
       <TermToolsPage />
+
       <ToolStackSection />
+
       <MarketingGrowthEngine />
+
       <Design2 />
+
       <DigitalMarketingFuture />
+
       <Tacsuite />
+
       <FriendlyKnowledgeHub />
+
       <Tools />
+
       <Testimonials />
+
       <FAQSection />
+
       <TacFooterLight />
     </>
   );

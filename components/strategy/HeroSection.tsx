@@ -6,9 +6,9 @@ export default function HeroSection() {
   return (
     <section
       className="relative min-h-screen overflow-hidden flex items-center"
-      style={{ 
-        background: '#F8F9FB', 
-        fontFamily: "'Segoe UI', system-ui, sans-serif" 
+      style={{
+        background: '#F8F9FB',
+        fontFamily: "'Segoe UI', system-ui, sans-serif"
       }}
     >
       {/* --- SIMPLE HORIZONTAL LINES BACKGROUND (Balanced Visibility) --- */}
@@ -23,13 +23,13 @@ export default function HeroSection() {
               transparent 23px,
               #8B5CF6 23px, 
               #8B5CF6 24px
-            )` 
+            )`
           }}
         />
-        <div style={{ 
-          position: 'absolute', 
-          inset: 0, 
-          background: 'radial-gradient(circle at center, rgba(255,255,255,0.6) 0%, transparent 70%)' 
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          background: 'radial-gradient(circle at center, rgba(255,255,255,0.6) 0%, transparent 70%)'
         }} />
       </div>
 
@@ -43,21 +43,21 @@ export default function HeroSection() {
             </p>
 
             <h1 style={{ margin: '0 0 28px', lineHeight: 1.05 }}>
-              <span style={{ 
-                display: 'block', 
-                fontSize: 'clamp(50px, 6vw, 78px)', 
-                fontWeight: 900, 
+              <span style={{
+                display: 'block',
+                fontSize: 'clamp(50px, 6vw, 78px)',
+                fontWeight: 900,
                 lineHeight: 1,
                 letterSpacing: '-0.04em',
                 color: '#1e1035'
               }}>
                 Digital Marketing
               </span>
-              <span style={{ 
-                display: 'block', 
-                fontSize: 'clamp(45px, 5.5vw, 72px)', 
-                fontWeight: 900, 
-                color: '#5829E5', 
+              <span style={{
+                display: 'block',
+                fontSize: 'clamp(45px, 5.5vw, 72px)',
+                fontWeight: 900,
+                color: '#5829E5',
                 lineHeight: 1.1,
                 letterSpacing: '-0.04em'
               }}>
@@ -146,7 +146,7 @@ export default function HeroSection() {
                   background: 'linear-gradient(160deg, #2d1060 0%, #0B041A 50%, #2d1060 100%)',
                   opacity: 0.9
                 }} />
-                
+
                 <div style={{
                   position: 'absolute',
                   inset: 0,

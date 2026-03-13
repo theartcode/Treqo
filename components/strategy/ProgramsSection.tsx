@@ -10,7 +10,7 @@ const programs = [
 ];
 
 export function ProgramsSection() {
-  const [hovered, setHovered] = useState(null);
+  const [hovered, setHovered] = useState<string | null>(null);
 
   return (
     <section style={{
