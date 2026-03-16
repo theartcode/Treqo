@@ -1,8 +1,8 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState } from "react";
 import Image from "next/image";
-import { motion, AnimatePresence, useScroll, useVelocity, useSpring, useTransform, useAnimationFrame, useMotionValue } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   Trophy,
   TrendingUp,
@@ -61,7 +61,8 @@ export default function ProgramExperience() {
   const [activeId, setActiveId] = useState(1);
 
   return (
-    <section className="relative w-full py-24 bg-[#F7F5FF] overflow-hidden px-[5%]"
+    <section
+      className="relative w-full py-24 overflow-hidden px-[5%] bg-[#F7F5FF]"
       style={{ fontFamily: "'DM Sans', 'Segoe UI', system-ui, sans-serif" }}
     >
 
@@ -72,31 +73,79 @@ export default function ProgramExperience() {
       }} />
 
       {/* Ambient glow */}
-      <div style={{ position: 'absolute', top: '-100px', right: '-100px', width: '500px', height: '500px', borderRadius: '50%', background: 'radial-gradient(circle, rgba(124,58,237,0.07) 0%, transparent 70%)', pointerEvents: 'none' }} />
+      <div style={{
+        position: 'absolute', top: '-100px', right: '-100px',
+        width: '500px', height: '500px', borderRadius: '50%',
+        background: 'radial-gradient(circle, rgba(124,58,237,0.07) 0%, transparent 70%)',
+        pointerEvents: 'none',
+      }} />
 
       {/* ── HEADER ── */}
-      <div className="max-w-4xl mx-auto text-center mb-16 space-y-4 relative z-10">
+      <div style={{
+        maxWidth: '896px', margin: '0 auto',
+        textAlign: 'center', marginBottom: '64px',
+        position: 'relative', zIndex: 10,
+      }}>
+
+        {/* Pill */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
-          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-purple-100 mb-2 shadow-sm"
+          style={{
+            display: 'inline-flex', alignItems: 'center', gap: '8px',
+            background: 'white', border: '1px solid rgba(88,41,229,0.1)',
+            borderRadius: '999px', padding: '6px 18px', marginBottom: '20px',
+            boxShadow: '0 4px 12px rgba(0,0,0,0.04)',
+          }}
         >
-          <Sparkles className="w-3 h-3 text-purple-600" />
-          <span className="text-[10px] tracking-[0.3em] font-bold text-purple-700 uppercase">
+          <Sparkles size={12} color="#5829E5" />
+          <span style={{ fontSize: '10px', fontWeight: 800, color: '#5829E5', letterSpacing: '0.3em', textTransform: 'uppercase' }}>
             What You'll Master
           </span>
         </motion.div>
 
-        <h2 className="text-5xl md:text-7xl font-black text-slate-900 tracking-tighter leading-[0.9]">
-          The Treqo
-        </h2>
-        <h2 className="text-5xl md:text-7xl font-black tracking-tighter leading-[0.9]">
-          <span className="italic font-serif text-purple-700">Curriculum</span>
+        {/* Title — matches site style */}
+        <h2 style={{ margin: '0 0 20px', lineHeight: 1.0 }}>
+          <span style={{
+            display: 'block',
+            fontSize: 'clamp(44px, 6vw, 80px)',
+            fontWeight: 900,
+            color: '#1A0B35',
+            letterSpacing: '-0.04em',
+            lineHeight: 0.95,
+          }}>
+            The Treqo
+          </span>
+          <span style={{
+            display: 'inline-block',
+            fontSize: 'clamp(44px, 6vw, 80px)',
+            fontWeight: 900,
+            fontStyle: 'italic',
+            letterSpacing: '-0.04em',
+            lineHeight: 0.95,
+            paddingBottom: '8px',
+            background: 'linear-gradient(to right, #5829E5 0%, #311882 60%, #7C3AED 100%)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            backgroundClip: 'text',
+          }}>
+            Curriculum
+          </span>
         </h2>
 
-        <p className="text-base md:text-lg text-slate-500 max-w-lg mx-auto leading-relaxed font-medium tracking-tight pt-2">
-          Five battle-tested modules designed around real campaigns, live data, and
-          <span className="inline-block ml-2 px-3 py-1 rounded-full bg-purple-100 text-purple-700 font-bold text-xs uppercase tracking-wider">
+        {/* Subtitle */}
+        <p style={{
+          fontSize: '16px', color: '#64748B', fontWeight: 500,
+          maxWidth: '500px', margin: '0 auto', lineHeight: 1.65,
+          letterSpacing: '-0.01em',
+        }}>
+          Five battle-tested modules designed around real campaigns, live data, and{' '}
+          <span style={{
+            display: 'inline-block', padding: '3px 12px', borderRadius: '999px',
+            background: 'rgba(88,41,229,0.08)', color: '#5829E5',
+            fontWeight: 800, fontSize: '11px', textTransform: 'uppercase',
+            letterSpacing: '0.1em', verticalAlign: 'middle', marginLeft: '4px',
+          }}>
             Industry Outcomes
           </span>
         </p>
