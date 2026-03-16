@@ -3,7 +3,6 @@
 import { useState, useRef } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence, useScroll, useVelocity, useSpring, useTransform, useAnimationFrame, useMotionValue } from "framer-motion";
-import { wrap } from "@motionone/utils";
 import {
   Trophy,
   TrendingUp,
@@ -11,12 +10,8 @@ import {
   ArrowRight,
   Star,
   Plus,
-  Megaphone,
-  Briefcase,
-  Building2,
   Sparkles,
   BarChart3,
-  Target,
 } from "lucide-react";
 
 const programData = [
@@ -62,33 +57,8 @@ const programData = [
   },
 ];
 
-const placementsData = [
-  { id: 1, name: "Aravind Swamy", company: "Google", role: "Growth Manager", image: "/placements/p1.jpg" },
-  { id: 2, name: "Sneha Kapoor", company: "Netflix", role: "Performance Marketer", image: "/placements/p2.jpg" },
-  { id: 3, name: "Rohan Das", company: "Adobe", role: "SEO Strategist", image: "/placements/p3.jpg" },
-  { id: 4, name: "Megha Rao", company: "Meta", role: "Brand Marketer", image: "/placements/p4.jpg" },
-  { id: 5, name: "Vikram Jeet", company: "Amazon", role: "Digital Analyst", image: "/placements/p5.jpg" },
-  { id: 6, name: "Priya Nair", company: "Zomato", role: "Content Strategist", image: "/placements/p6.jpg" },
-];
-
 export default function ProgramExperience() {
   const [activeId, setActiveId] = useState(1);
-
-  const baseX = useMotionValue(0);
-  const { scrollY } = useScroll();
-  const scrollVelocity = useVelocity(scrollY);
-  const smoothVelocity = useSpring(scrollVelocity, { damping: 50, stiffness: 400 });
-  const velocityFactor = useTransform(smoothVelocity, [0, 1000], [0, 5], { clamp: false });
-  const x = useTransform(baseX, (v) => `${wrap(-50, -25, v)}%`);
-  const directionFactor = useRef(1);
-
-  useAnimationFrame((t, delta) => {
-    let moveBy = directionFactor.current * 0.8 * (delta / 1000);
-    if (velocityFactor.get() < 0) directionFactor.current = -1;
-    else if (velocityFactor.get() > 0) directionFactor.current = 1;
-    moveBy += directionFactor.current * moveBy * velocityFactor.get();
-    baseX.set(baseX.get() + moveBy);
-  });
 
   return (
     <section className="relative w-full py-24 bg-[#F7F5FF] overflow-hidden px-[5%]"
@@ -133,7 +103,7 @@ export default function ProgramExperience() {
       </div>
 
       {/* ── ACCORDION ── */}
-      <div className="max-w-full mx-auto flex flex-col md:flex-row gap-4 h-[650px] mb-32 relative z-10">
+      <div className="max-w-full mx-auto flex flex-col md:flex-row gap-4 h-[650px] relative z-10">
         {programData.map((item) => {
           const isActive = activeId === item.id;
           return (
@@ -172,12 +142,10 @@ export default function ProgramExperience() {
                     <div className="relative w-full lg:w-[45%] h-full p-4">
                       <div className="relative h-full w-full rounded-[32px] overflow-hidden bg-gradient-to-br from-purple-900 to-indigo-950">
                         <Image src={item.image} alt={item.title} fill className="object-cover opacity-60" />
-                        {/* Overlay gradient */}
                         <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
                         <div className="absolute top-6 left-6 bg-purple-600 text-white p-4 rounded-2xl shadow-xl">
                           {item.icon}
                         </div>
-                        {/* Module number */}
                         <div className="absolute bottom-6 left-6">
                           <span style={{ fontSize: '72px', fontWeight: 900, color: 'rgba(255,255,255,0.08)', lineHeight: 1, fontFamily: 'Georgia, serif' }}>
                             0{item.id}
@@ -221,57 +189,6 @@ export default function ProgramExperience() {
             </motion.div>
           );
         })}
-      </div>
-
-      {/* ── PLACEMENTS HEADER ── */}
-      <div className="max-w-4xl mx-auto text-center mb-12 space-y-4 relative z-10">
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-purple-100 mb-2 shadow-sm">
-          <Target className="w-3 h-3 text-purple-600" />
-          <span className="text-[10px] tracking-[0.3em] font-bold text-purple-700 uppercase">Placement Results</span>
-        </div>
-        <h2 className="text-4xl md:text-6xl font-black text-slate-900 tracking-tighter leading-tight">
-          Our Students Got <br />
-          <span className="font-serif italic font-light text-purple-600 lowercase">Placed</span>
-        </h2>
-        <p className="text-sm md:text-base text-slate-500 max-w-md mx-auto leading-relaxed font-medium">
-          From digital marketing beginners to <span className="text-purple-700 font-bold">Industry Leaders</span> at top global brands.
-        </p>
-      </div>
-
-      {/* ── VELOCITY MARQUEE ── */}
-      <div className="relative flex overflow-hidden -mx-[5%] z-10">
-        <motion.div className="flex gap-6 py-6" style={{ x }}>
-          {[...placementsData, ...placementsData, ...placementsData, ...placementsData].map((p, i) => (
-            <div
-              key={i}
-              style={{
-                width: '260px', flexShrink: 0,
-                background: 'white',
-                borderRadius: '28px',
-                border: '1px solid #ede9fe',
-                padding: '20px',
-                boxShadow: '0 8px 32px rgba(124,58,237,0.06)',
-                display: 'flex', flexDirection: 'column', justifyContent: 'space-between',
-                height: '340px',
-              }}
-            >
-              <div style={{ position: 'relative', width: '100%', height: '180px', borderRadius: '18px', overflow: 'hidden', background: 'linear-gradient(135deg, #1a0533, #2d1060)' }}>
-                <Image src={p.image} alt={p.name} fill className="object-cover opacity-70" />
-              </div>
-              <div style={{ marginTop: '16px' }}>
-                <h3 style={{ margin: '0 0 4px', fontSize: '16px', fontWeight: 900, color: '#0D0D1A', letterSpacing: '-0.01em' }}>{p.name}</h3>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '4px' }}>
-                  <Building2 size={12} color="#7C3AED" />
-                  <span style={{ fontSize: '11px', fontWeight: 700, color: '#7C3AED', textTransform: 'uppercase', letterSpacing: '0.1em' }}>{p.company}</span>
-                </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                  <Briefcase size={12} color="#94a3b8" />
-                  <span style={{ fontSize: '11px', fontWeight: 500, color: '#94a3b8' }}>{p.role}</span>
-                </div>
-              </div>
-            </div>
-          ))}
-        </motion.div>
       </div>
 
     </section>
