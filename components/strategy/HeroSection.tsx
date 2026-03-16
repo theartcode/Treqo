@@ -39,140 +39,142 @@ export default function HeroSection() {
       <div className="relative z-10 w-full" style={{ padding: '0 6%' }}>
         <div className="max-w-7xl mx-auto grid grid-cols-2 items-center" style={{ gap: '80px' }}>
 
-          {/* LEFT CONTENT */}
-          <div>
+{/* LEFT CONTENT */}
+<div style={{ marginTop: '60px' }}>
 
-            {/* TITLE */}
-            <h1 style={{ margin: '0 0 22px', lineHeight: 1.08 }}>
-              <span style={{
-                display: 'block',
-                fontSize: 'clamp(42px, 4.6vw, 64px)',
-                fontWeight: 900,
-                lineHeight: 1.05,
-                letterSpacing: '-0.035em',
-                color: '#1e1035',
-                marginBottom: '2px',
-              }}>
-                New Age Digital
-              </span>
-              <span style={{
-                display: 'block',
-                fontSize: 'clamp(42px, 4.6vw, 64px)',
-                fontWeight: 900,
-                lineHeight: 1.05,
-                letterSpacing: '-0.035em',
-                color: '#1e1035',
-              }}>
-                Marketing
-              </span>
-              <span style={{
-                display: 'flex',
-                alignItems: 'center',
-                flexWrap: 'wrap',
-                gap: '8px',
-                marginTop: '14px',
-              }}>
-                <BracketTag>( Strategy</BracketTag>
-                <Divider />
-                <BracketTag>Growth</BracketTag>
-                <Divider />
-                <BracketTag>Implementation )</BracketTag>
-              </span>
-            </h1>
+  {/* TITLE */}
+  <h1 style={{ margin: '0 0 22px', lineHeight: 1.08 }}>
+    <span style={{
+      display: 'block',
+      fontSize: 'clamp(42px, 4.6vw, 64px)',
+      fontWeight: 900,
+      lineHeight: 1.05,
+      letterSpacing: '-0.035em',
+      color: '#1e1035',
+      marginBottom: '2px',
+    }}>
+      New Age Digital
+    </span>
 
-            {/* TAGLINE */}
-            <p style={{
-              fontSize: '15px',
-              color: '#4B5563',
-              fontWeight: 500,
-              lineHeight: 1.6,
-              margin: '0 0 28px',
-              maxWidth: '460px',
-            }}>
-              Learn Marketing The Way Founders, Strategists &amp; Growth Leaders Do.
-            </p>
+    <span style={{
+      display: 'block',
+      fontSize: 'clamp(42px, 4.6vw, 64px)',
+      fontWeight: 900,
+      lineHeight: 1.05,
+      letterSpacing: '-0.035em',
+      color: '#1e1035',
+    }}>
+      Marketing
+    </span>
 
-            {/* META */}
-            <div style={{
-              display: 'flex',
-              flexWrap: 'wrap',
-              gap: '28px',
-              marginBottom: '20px'
-            }}>
-              <Meta icon={Clock} text="4–5 Months" />
-              <Meta icon={MapPin} text="Online & Offline" />
-              <Meta icon={Users} text="40 Seats" />
-            </div>
+    <span style={{
+      display: 'flex',
+      alignItems: 'center',
+      flexWrap: 'wrap',
+      gap: '8px',
+      marginTop: '14px',
+    }}>
+      <BracketTag>( Strategy</BracketTag>
+      <Divider />
+      <BracketTag>Growth</BracketTag>
+      <Divider />
+      <BracketTag>Implementation )</BracketTag>
+    </span>
+  </h1>
 
-            {/* STATS */}
-            <div style={{
-              display: 'flex',
-              gap: '10px',
-              marginBottom: '22px',
-            }}>
-              <StatBadge icon={BarChart2} text="12 Phases" />
-              <StatBadge icon={Briefcase} text="16 Industries" />
-              <StatBadge icon={BookOpen} text="30+ Projects" />
-              <StatBadge icon={Trophy} text="100% Placement" highlight />
-            </div>
+  {/* TAGLINE */}
+  <p style={{
+    fontSize: '15px',
+    color: '#4B5563',
+    fontWeight: 500,
+    lineHeight: 1.6,
+    margin: '0 0 28px',
+    maxWidth: '460px',
+  }}>
+    Learn Marketing The Way Founders, Strategists &amp; Growth Leaders Do.
+  </p>
 
-            {/* PILLS */}
-            <div style={{
-              display: 'flex',
-              flexWrap: 'wrap',
-              gap: '12px',
-              marginBottom: '34px'
-            }}>
-              <Pill icon={BookOpen} text="Learn by Doing" />
-              <Pill icon={Zap} text="Strategy First" />
-              <Pill icon={UserCheck} text="AI Native" />
-            </div>
+  {/* META */}
+  <div style={{
+    display: 'flex',
+    flexWrap: 'wrap',
+    gap: '28px',
+    marginBottom: '20px'
+  }}>
+    <Meta icon={Clock} text="4–5 Months" />
+    <Meta icon={MapPin} text="Online & Offline" />
+    <Meta icon={Users} text="40 Seats" />
+  </div>
 
-            {/* CTA */}
-            <button
-              style={{
-                background: '#5829E5',
-                color: 'white',
-                border: 'none',
-                borderRadius: '16px',
-                padding: '16px 36px',
-                fontSize: '15px',
-                fontWeight: 800,
-                letterSpacing: '0.06em',
-                cursor: 'pointer',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '12px',
-                marginBottom: '34px',
-                boxShadow: '0 12px 40px rgba(88,41,229,0.15)',
-                transition: 'all 0.2s ease'
-              }}
-              onMouseEnter={e => {
-                e.currentTarget.style.background = '#471ecb';
-                e.currentTarget.style.transform = 'translateY(-2px)';
-              }}
-              onMouseLeave={e => {
-                e.currentTarget.style.background = '#5829E5';
-                e.currentTarget.style.transform = 'translateY(0)';
-              }}
-            >
-              APPLY NOW
-              <ArrowRight size={18} />
-            </button>
+  {/* STATS */}
+  <div style={{
+    display: 'flex',
+    gap: '10px',
+    marginBottom: '22px',
+  }}>
+    <StatBadge icon={BarChart2} text="12 Phases" />
+    <StatBadge icon={Briefcase} text="16 Industries" />
+    <StatBadge icon={BookOpen} text="30+ Projects" />
+    <StatBadge icon={Trophy} text="100% Placement" highlight />
+  </div>
 
-            {/* TRUST */}
-            <div style={{
-              display: 'flex',
-              gap: '48px',
-              borderTop: '1px solid rgba(88, 41, 229, 0.1)',
-              paddingTop: '26px'
-            }}>
-              <Trust label="Alumni from" value="TOP Bschools" />
-              <Trust label="Mentors" value="CEO's, CMO's & CXO's" />
-              <Trust label="Backed by" value="Industry Leaders" />
-            </div>
+  {/* PILLS */}
+  <div style={{
+    display: 'flex',
+    flexWrap: 'wrap',
+    gap: '12px',
+    marginBottom: '34px'
+  }}>
+    <Pill icon={BookOpen} text="Learn by Doing" />
+    <Pill icon={Zap} text="Strategy First" />
+    <Pill icon={UserCheck} text="AI Native" />
+  </div>
 
-          </div>
+  {/* CTA */}
+  <button
+    style={{
+      background: '#5829E5',
+      color: 'white',
+      border: 'none',
+      borderRadius: '16px',
+      padding: '16px 36px',
+      fontSize: '15px',
+      fontWeight: 800,
+      letterSpacing: '0.06em',
+      cursor: 'pointer',
+      display: 'flex',
+      alignItems: 'center',
+      gap: '12px',
+      marginBottom: '34px',
+      boxShadow: '0 12px 40px rgba(88,41,229,0.15)',
+      transition: 'all 0.2s ease'
+    }}
+    onMouseEnter={e => {
+      e.currentTarget.style.background = '#471ecb';
+      e.currentTarget.style.transform = 'translateY(-2px)';
+    }}
+    onMouseLeave={e => {
+      e.currentTarget.style.background = '#5829E5';
+      e.currentTarget.style.transform = 'translateY(0)';
+    }}
+  >
+    APPLY NOW
+    <ArrowRight size={18} />
+  </button>
+
+  {/* TRUST */}
+  <div style={{
+    display: 'flex',
+    gap: '48px',
+    borderTop: '1px solid rgba(88, 41, 229, 0.1)',
+    paddingTop: '26px'
+  }}>
+    <Trust label="Alumni from" value="TOP Bschools" />
+    <Trust label="Mentors" value="CEO's, CMO's & CXO's" />
+    <Trust label="Backed by" value="Industry Leaders" />
+  </div>
+
+</div>
 
           {/* RIGHT MEDIA */}
           <div style={{ display: 'flex', justifyContent: 'center', position: 'relative' }}>
