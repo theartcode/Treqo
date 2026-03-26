@@ -1,165 +1,233 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
-import {
-  Film,
-  Layers,
-  Wind,
-  Figma,
-  Palette,
-  Smartphone,
-  Cpu,
-  ArrowRight,
-  Sparkles
-} from "lucide-react";
+import { Award, ShieldCheck, BadgeCheck, Star, Sparkles, ArrowRight, BarChart2, Search, Mail, Globe, Target, Zap } from "lucide-react";
 
-const tools = [
-  {
-    name: "Premiere Pro",
-    icon: <Film size={16} />,
-    color: "#EA77FF",
-    id: "01",
-    description: "Industry-standard video editing workflows."
-  },
-  {
-    name: "After Effects",
-    icon: <Wind size={16} />,
-    color: "#9999FF",
-    id: "02",
-    description: "Motion graphics and VFX pipelines."
-  },
-  {
-    name: "DaVinci Resolve",
-    icon: <Layers size={16} />,
-    color: "#C084FC", // Purple variant
-    id: "03",
-    description: "Cinematic color grading and finishing."
-  },
-  {
-    name: "Figma",
-    icon: <Figma size={16} />,
-    color: "#FFFFFF", // White for contrast
-    id: "04",
-    description: "UI systems and design architecture."
-  },
-  {
-    name: "Photoshop",
-    icon: <Palette size={16} />,
-    color: "#31A8FF",
-    id: "05",
-    description: "Brand identity and asset design."
-  },
-  {
-    name: "Meta Ads",
-    icon: <Smartphone size={16} />,
-    color: "#E9D5FF", // Light purple
-    id: "06",
-    description: "Performance marketing frameworks."
-  },
-  {
-    name: "AI Strategy",
-    icon: <Cpu size={16} />,
-    color: "#A855F7", // Solid Purple
-    id: "07",
-    description: "Automation and AI-assisted workflows."
-  }
+/* ─────────────────────────────────────────────
+   CERTIFICATE DATA  — grouped by provider
+───────────────────────────────────────────── */
+const semrush = [
+  { name: "PPC Fundamentals",           provider: "SEMrush", icon: <Target size={15} />,    color: "#FF642D", providerColor: "#FF642D" },
+  { name: "SEO Fundamentals",           provider: "SEMrush", icon: <Search size={15} />,    color: "#FF642D", providerColor: "#FF642D" },
+  { name: "Social Media",               provider: "SEMrush", icon: <Star size={15} />,      color: "#FF642D", providerColor: "#FF642D" },
+  { name: "Content Marketing",          provider: "SEMrush", icon: <Award size={15} />,     color: "#FF642D", providerColor: "#FF642D" },
 ];
 
-export default function TechStackDashboard() {
-  const loop = [...tools, ...tools, ...tools, ...tools];
+const hubspot = [
+  { name: "SEO Certification",                  provider: "HubSpot", icon: <Search size={15} />,    color: "#FF7A59", providerColor: "#FF7A59" },
+  { name: "Digital Marketing",                  provider: "HubSpot", icon: <Globe size={15} />,     color: "#FF7A59", providerColor: "#FF7A59" },
+  { name: "Social Media Marketing",             provider: "HubSpot", icon: <Star size={15} />,      color: "#FF7A59", providerColor: "#FF7A59" },
+  { name: "Email Marketing",                    provider: "HubSpot", icon: <Mail size={15} />,      color: "#FF7A59", providerColor: "#FF7A59" },
+  { name: "Inbound Marketing",                  provider: "HubSpot", icon: <Zap size={15} />,       color: "#FF7A59", providerColor: "#FF7A59" },
+  { name: "Content Marketing",                  provider: "HubSpot", icon: <Award size={15} />,     color: "#FF7A59", providerColor: "#FF7A59" },
+];
 
+const google = [
+  { name: "Google My Business",            provider: "Google", icon: <Globe size={15} />,     color: "#34A853", providerColor: "#4285F4" },
+  { name: "Google Analytics (GA4)",        provider: "Google", icon: <BarChart2 size={15} />, color: "#4285F4", providerColor: "#4285F4" },
+  { name: "Google Ads Shopping",           provider: "Google", icon: <Target size={15} />,    color: "#EA4335", providerColor: "#4285F4" },
+  { name: "Performance Max",               provider: "Google", icon: <Zap size={15} />,       color: "#FBBC04", providerColor: "#4285F4" },
+  { name: "Google Ads Video",              provider: "Google", icon: <Star size={15} />,      color: "#EA4335", providerColor: "#4285F4" },
+  { name: "Google Ads Display",            provider: "Google", icon: <Award size={15} />,     color: "#34A853", providerColor: "#4285F4" },
+  { name: "Fundamentals of Digital Mkt",  provider: "Google", icon: <Globe size={15} />,     color: "#4285F4", providerColor: "#4285F4" },
+  { name: "Google Ads Search",             provider: "Google", icon: <Search size={15} />,    color: "#FBBC04", providerColor: "#4285F4" },
+];
+
+const meta = [
+  { name: "Community Manager",         provider: "Meta", price: "$99",  icon: <Star size={15} />,       color: "#0082FB", providerColor: "#0082FB" },
+  { name: "Creative Strategy Pro",     provider: "Meta", price: "$150", icon: <Sparkles size={15} />,   color: "#0082FB", providerColor: "#0082FB" },
+  { name: "Media Planning Pro",        provider: "Meta", price: "$150", icon: <BarChart2 size={15} />,  color: "#0082FB", providerColor: "#0082FB" },
+  { name: "Marketing Science Pro",     provider: "Meta", price: "$150", icon: <Award size={15} />,      color: "#0082FB", providerColor: "#0082FB" },
+  { name: "Digital Marketing Assoc.",  provider: "Meta", price: "$99",  icon: <BadgeCheck size={15} />, color: "#0082FB", providerColor: "#0082FB" },
+  { name: "Media Buying Pro",          provider: "Meta", price: "$150", icon: <Target size={15} />,     color: "#0082FB", providerColor: "#0082FB" },
+];
+
+/* provider logo pill colours */
+const providerBadge: Record<string, { bg: string; text: string }> = {
+  SEMrush: { bg: "rgba(255,100,45,0.15)",  text: "#FF642D" },
+  HubSpot: { bg: "rgba(255,122,89,0.15)",  text: "#FF7A59" },
+  Google:  { bg: "rgba(66,133,244,0.15)",  text: "#4285F4" },
+  Meta:    { bg: "rgba(0,130,251,0.15)",   text: "#0082FB" },
+};
+
+/* ─────────────────────────────────────────────
+   CARD
+───────────────────────────────────────────── */
+type Cert = {
+  name: string;
+  provider: string;
+  icon: React.ReactNode;
+  color: string;
+  providerColor: string;
+  price?: string;
+};
+
+function CertCard({ cert }: { cert: Cert }) {
+  const badge = providerBadge[cert.provider];
   return (
-    <section className="py-20 px-[5%] bg-[#0F0A1F] text-white overflow-hidden relative border-y border-purple-500/10 font-sans">
-      
-      {/* Background Texture Overlay - Purple tint dots */}
-      <div className="absolute inset-0 opacity-[0.03] pointer-events-none" 
-           style={{ backgroundImage: 'radial-gradient(#A855F7 1px, transparent 1px)', backgroundSize: '40px 40px' }} 
-      />
+    <div style={{
+      display: "flex", flexDirection: "column", justifyContent: "space-between",
+      minWidth: 230, maxWidth: 230,
+      background: "rgba(255,255,255,0.03)",
+      backdropFilter: "blur(20px)",
+      border: "1px solid rgba(255,255,255,0.08)",
+      borderRadius: 20,
+      padding: "20px 20px 16px",
+      boxShadow: "0 8px 32px rgba(0,0,0,0.3)",
+      flexShrink: 0,
+      position: "relative",
+      overflow: "hidden",
+    }}>
+      {/* subtle top accent */}
+      <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 2, background: `linear-gradient(to right, ${cert.color}, transparent)`, borderRadius: "20px 20px 0 0" }} />
 
-      <div className="max-w-7xl mx-auto relative z-10">
+      {/* icon + provider */}
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 14 }}>
+        <div style={{
+          width: 38, height: 38, borderRadius: 12,
+          background: cert.color + "18",
+          border: `1px solid ${cert.color}30`,
+          display: "flex", alignItems: "center", justifyContent: "center",
+          color: cert.color,
+        }}>
+          {cert.icon}
+        </div>
+        <div style={{
+          fontSize: 9, fontWeight: 800,
+          background: badge.bg, color: badge.text,
+          borderRadius: 999, padding: "3px 10px",
+          letterSpacing: "0.08em", textTransform: "uppercase",
+        }}>
+          {cert.provider}
+        </div>
+      </div>
 
-        {/* Header Section */}
-        <div className="text-center mb-14">
-          <motion.div 
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="inline-flex items-center justify-center gap-2 mb-5 px-4 py-1.5 rounded-full border border-purple-500/20 bg-purple-900/20"
-          >
-            <Sparkles size={12} className="text-purple-400" />
-            <span className="text-[9px] font-bold tracking-[0.3em] uppercase text-purple-200/60">
-              The TAC Suite Tools
-            </span>
-          </motion.div>
+      {/* name */}
+      <p style={{ margin: "0 0 10px", fontSize: 13, fontWeight: 800, color: "white", lineHeight: 1.35 }}>
+        {cert.name}
+      </p>
 
-          <h2 className="text-4xl md:text-5xl font-black tracking-tight mb-4">
-            The Execution <span className="italic font-serif text-purple-400">Stack.</span>
-          </h2>
+      {/* footer */}
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+        {cert.price ? (
+          <span style={{ fontSize: 10, fontWeight: 800, color: cert.color, background: cert.color + "15", borderRadius: 6, padding: "3px 8px" }}>
+            {cert.price} exam
+          </span>
+        ) : (
+          <span style={{ fontSize: 10, fontWeight: 700, color: "rgba(255,255,255,0.25)", textTransform: "uppercase", letterSpacing: "0.1em" }}>
+            Included
+          </span>
+        )}
+        <div style={{ display: "flex", alignItems: "center", gap: 3, color: cert.color, fontSize: 9, fontWeight: 800, textTransform: "uppercase" }}>
+          <span>View</span><ArrowRight size={10} />
+        </div>
+      </div>
+    </div>
+  );
+}
 
-          <p className="max-w-xl mx-auto text-slate-400 text-sm md:text-base font-medium leading-relaxed">
-            Master the production-grade tools used by elite creative teams and global marketing agencies.
-          </p>
+/* ─────────────────────────────────────────────
+   INFINITE ROW
+───────────────────────────────────────────── */
+function InfiniteRow({ certs, direction = 1, speed = 28 }: { certs: Cert[]; direction?: 1 | -1; speed?: number }) {
+  const loop = [...certs, ...certs, ...certs]; // triple for seamless
+  return (
+    <div style={{ overflow: "hidden" }}>
+      <motion.div
+        style={{ display: "flex", gap: 16 }}
+        animate={{ x: direction === 1 ? ["-33.33%", "0%"] : ["0%", "-33.33%"] }}
+        transition={{ duration: speed, repeat: Infinity, ease: "linear" }}
+      >
+        {loop.map((cert, i) => <CertCard key={i} cert={cert} />)}
+      </motion.div>
+    </div>
+  );
+}
+
+/* ─────────────────────────────────────────────
+   SECTION
+───────────────────────────────────────────── */
+export default function CertificatesSection() {
+  return (
+    <section style={{
+      padding: "96px 5% 80px",
+      background: "#0F0A1F",
+      color: "white",
+      overflow: "hidden",
+      borderTop: "1px solid rgba(139,92,246,0.12)",
+      borderBottom: "1px solid rgba(139,92,246,0.12)",
+      fontFamily: "'DM Sans','Segoe UI',system-ui,sans-serif",
+      position: "relative",
+    }}>
+      {/* ambient glow */}
+      <div style={{ position: "absolute", top: "-20%", left: "50%", transform: "translateX(-50%)", width: 800, height: 400, borderRadius: "50%", background: "radial-gradient(ellipse, rgba(124,58,237,0.1) 0%, transparent 70%)", pointerEvents: "none" }} />
+
+      {/* ── HEADER ── */}
+      <div style={{ textAlign: "center", marginBottom: 60, padding: "0 5%", position: "relative", zIndex: 2 }}>
+        <div style={{
+          display: "inline-flex", alignItems: "center", gap: 8,
+          background: "rgba(124,58,237,0.1)", border: "1px solid rgba(124,58,237,0.25)",
+          borderRadius: 999, padding: "6px 18px", marginBottom: 20,
+        }}>
+          <ShieldCheck size={12} color="#A78BFA" />
+          <span style={{ fontSize: 10, fontWeight: 800, color: "#A78BFA", letterSpacing: "0.2em", textTransform: "uppercase" }}>
+            Industry Certifications
+          </span>
         </div>
 
-        {/* Smaller Infinite Tool Stream */}
-        <div className="relative">
-          {/* Edge Fades to blend with Midnight Purple */}
-          <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-[#0F0A1F] to-transparent z-10" />
-          <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-[#0F0A1F] to-transparent z-10" />
+        <h2 style={{ margin: "0 0 14px", lineHeight: 1.05, letterSpacing: "-0.03em" }}>
+          <span style={{ display: "block", fontSize: "clamp(36px, 5vw, 60px)", fontWeight: 900, color: "white" }}>
+            30+ Certifications
+          </span>
+          <span style={{
+            display: "inline-block", fontSize: "clamp(36px, 5vw, 60px)", fontWeight: 900, fontStyle: "italic",
+            background: "linear-gradient(90deg, #A78BFA 0%, #7C3AED 100%)",
+            WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent",
+          }}>
+            Yours to Earn.
+          </span>
+        </h2>
 
-          <div className="flex overflow-hidden py-4">
-            <motion.div
-              animate={{ x: [0, -1800] }}
-              transition={{ duration: 45, repeat: Infinity, ease: "linear" }}
-              className="flex gap-5"
-            >
-              {loop.map((tool, i) => (
-                <motion.div
-                  key={i}
-                  whileHover={{ y: -5, scale: 1.02 }}
-                  className="group flex flex-col justify-between bg-white/[0.03] backdrop-blur-xl rounded-[1.5rem] px-6 py-6 min-w-[240px] border border-white/10 shadow-2xl transition-all duration-300 hover:shadow-[0_20px_40px_rgba(168,85,247,0.15)] hover:border-purple-500/50"
-                >
-                  <div className="flex items-center gap-4 mb-4">
-                    <div
-                      className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center border border-white/10 shrink-0"
-                      style={{ color: tool.color }}
-                    >
-                      {tool.icon}
-                    </div>
+        <p style={{ fontSize: 15, color: "rgba(255,255,255,0.45)", maxWidth: 480, margin: "0 auto", lineHeight: 1.7, fontWeight: 500 }}>
+          From Google & Meta to HubSpot & SEMrush — graduate with credentials that recruiters actually search for.
+        </p>
 
-                    <div>
-                      <span className="text-[8px] font-bold uppercase tracking-widest text-purple-400 block leading-none mb-1">
-                        Node {tool.id}
-                      </span>
-                      <h3 className="text-sm font-bold tracking-tight text-white">
-                        {tool.name}
-                      </h3>
-                    </div>
-                  </div>
-
-                  <div>
-                    <p className="text-[12px] text-slate-400 font-medium leading-snug">
-                      {tool.description}
-                    </p>
-
-                    <div className="flex items-center gap-1.5 mt-4 text-purple-400 text-[9px] font-bold tracking-wider uppercase opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300">
-                      <span>Curriculum</span>
-                      <ArrowRight size={12} />
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </motion.div>
-          </div>
+        {/* provider pills */}
+        <div style={{ display: "flex", justifyContent: "center", gap: 10, marginTop: 24, flexWrap: "wrap" }}>
+          {[
+            { name: "Google", bg: "rgba(66,133,244,0.12)", text: "#4285F4", count: "8 certs" },
+            { name: "Meta",   bg: "rgba(0,130,251,0.12)",  text: "#0082FB", count: "6 certs · paid" },
+            { name: "HubSpot",bg: "rgba(255,122,89,0.12)", text: "#FF7A59", count: "6 certs" },
+            { name: "SEMrush",bg: "rgba(255,100,45,0.12)", text: "#FF642D", count: "4 certs" },
+          ].map(p => (
+            <div key={p.name} style={{ display: "flex", alignItems: "center", gap: 8, background: p.bg, border: `1px solid ${p.text}22`, borderRadius: 999, padding: "6px 14px" }}>
+              <span style={{ fontSize: 11, fontWeight: 800, color: p.text }}>{p.name}</span>
+              <span style={{ fontSize: 10, fontWeight: 600, color: "rgba(255,255,255,0.3)" }}>{p.count}</span>
+            </div>
+          ))}
         </div>
+      </div>
 
-        {/* Bottom context */}
-        <div className="mt-12 text-center">
-          <p className="text-slate-500 text-[11px] font-medium italic">
-            * Agency-standard workflows for the TAC Suite Online.
-          </p>
+      {/* ── 4 SCROLLING ROWS ── */}
+      <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+        <InfiniteRow certs={google}  direction={1}  speed={32} />
+        <InfiniteRow certs={meta}    direction={-1} speed={28} />
+        <InfiniteRow certs={hubspot} direction={1}  speed={35} />
+        <InfiniteRow certs={semrush} direction={-1} speed={24} />
+      </div>
+
+      {/* ── FOOTER NOTE ── */}
+      <div style={{ marginTop: 48, textAlign: "center", padding: "0 5%", position: "relative", zIndex: 2 }}>
+        <div style={{
+          display: "inline-flex", alignItems: "center", gap: 10,
+          background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.07)",
+          borderRadius: 14, padding: "12px 24px",
+        }}>
+          <div style={{ width: 7, height: 7, borderRadius: "50%", background: "#4ADE80", boxShadow: "0 0 8px #4ADE80" }} />
+          <span style={{ fontSize: 12, color: "rgba(255,255,255,0.5)", fontWeight: 500 }}>
+            Google, HubSpot & SEMrush certifications are <strong style={{ color: "rgba(255,255,255,0.75)" }}>included in your fee</strong>. Meta certifications require separate exam fees.
+          </span>
         </div>
-
       </div>
     </section>
   );

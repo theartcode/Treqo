@@ -34,7 +34,7 @@ export default function Navbar() {
   const scrolledWrapperStyle: React.CSSProperties = {
     maxWidth: "60%",
     margin: "14px auto 0",
-    padding: "14px 40px",
+    padding: "14px 20px",
     background: "#ffffff",
     borderRadius: "9999px",
     border: "1px solid #ede9fe",
@@ -73,7 +73,7 @@ export default function Navbar() {
           {/* LOGO */}
           <span
             style={{
-              fontSize: scrolled ? "22px" : "26px",
+              fontSize: scrolled ? "20px" : "22px",
               fontWeight: 900,
               color: "#5829E5",
               letterSpacing: "-0.02em",

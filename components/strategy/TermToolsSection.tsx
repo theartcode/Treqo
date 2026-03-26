@@ -6,135 +6,217 @@ import { Sparkles, CheckCircle2, Terminal, ArrowRight, Zap, Clock, Users, BarCha
 const TERM_DATA = [
   {
     id: 1,
-    title: "Marketing Foundations",
+    title: "What Marketing Really Is",
     subtitle: "Build the base",
     duration: "2 weeks",
     projects: 3,
     level: "Beginner",
-    tools: ["Google Trends", "Canva", "ChatGPT", "Notion"],
+    industry: "Luxury",
+    company: "Tanishq",
+    tools: ["Google Trends","ChatGPT", "Notion"],
     techniques: ["Market Research", "Customer Personas", "Brand Positioning", "Value Proposition"],
     outcome: "You'll walk away with a complete brand brief and a validated customer persona ready for real campaign use.",
   },
   {
     id: 2,
-    title: "Performance Marketing",
-    subtitle: "Run paid campaigns",
-    duration: "3 weeks",
-    projects: 4,
-    level: "Intermediate",
-    tools: ["Google Ads", "Meta Ads Manager", "Hotjar", "Triple Whale"],
-    techniques: ["Paid Campaign Structuring", "Conversion Tracking", "A/B Testing", "ROAS Optimization"],
-    outcome: "Launch and manage a real ₹10,000 test ad campaign with measurable ROAS outcomes.",
-  },
-  {
-    id: 3,
-    title: "Content & SEO",
-    subtitle: "Own organic traffic",
-    duration: "2 weeks",
-    projects: 3,
-    level: "Intermediate",
-    tools: ["Ahrefs", "SEMrush", "Surfer SEO", "Screaming Frog"],
-    techniques: ["Keyword Research", "On-page SEO", "Content Calendars", "Topic Clustering"],
-    outcome: "Rank a live article in 60 days and build a full editorial calendar for a real brand.",
-  },
-  {
-    id: 4,
-    title: "Growth Funnels",
-    subtitle: "Convert & retain",
-    duration: "2 weeks",
-    projects: 4,
-    level: "Intermediate",
-    tools: ["Webflow", "Zapier", "Klaviyo", "Google Analytics"],
-    techniques: ["Funnel Mapping", "Lead Magnets", "Email Automation", "Retention Loops"],
-    outcome: "Build a fully automated 5-step lead funnel that captures and converts real traffic.",
-  },
-  {
-    id: 5,
-    title: "Analytics & Optimization",
-    subtitle: "Measure everything",
-    duration: "2 weeks",
-    projects: 3,
-    level: "Advanced",
-    tools: ["GA4", "Looker Studio", "Mixpanel", "Amplitude"],
-    techniques: ["Cohort Analysis", "Event Tracking", "Funnel Analysis", "Data-led Decisions"],
-    outcome: "Deliver a live analytics dashboard for a real client with actionable growth recommendations.",
-  },
-  {
-    id: 6,
-    title: "Social Media Marketing",
-    subtitle: "Build audiences",
+    title: "Customer & Market Understanding",
+    subtitle: "Know your audience before you sell to them",
     duration: "2 weeks",
     projects: 3,
     level: "Beginner",
-    tools: ["Buffer", "Sprout Social", "Later", "Hootsuite"],
-    techniques: ["Platform Strategy", "Organic Growth", "Community Building", "Engagement Loops"],
-    outcome: "Grow a brand account by 500+ followers organically using a documented content strategy.",
+    industry: "Healthcare",
+    company: "Apollo 24|7",
+    tools: ["Google Forms", "Typeform", "Notion", "ChatGPT"],
+    techniques: ["Customer Interviews & Surveys", "Trust Trigger Mapping", "Persona Building (Jobs, Pains, Gains)", "Market Segmentation"],
+    outcome: "You'll build 3 detailed buyer personas with trust triggers — ready to plug into any campaign brief.",
+  },
+  {
+    id: 3,
+    title: "Funnels & Basic Metrics",
+    subtitle: "Learn where the money leaks",
+    duration: "2 weeks",
+    projects: 3,
+    level: "Beginner",
+    industry: "Travel",
+    company: "MakeMyTrip",
+    tools: ["Google Analytics", "Sheets", "Funnelytics", "Notion"],
+    techniques: ["Funnel Mapping (TOFU → BOFU)", "Drop-off Analysis", "Conversion Rate Basics", "Metric Dashboarding"],
+    outcome: "You'll diagnose a real funnel, find the leak, and propose a fix — the exact skill performance marketers get paid for.",
+  },
+  {
+    id: 4,
+    title: "Idea Clarity & Problem Discovery",
+    subtitle: "Prove you can think before you execute",
+    duration: "2 weeks",
+    projects: 2,
+    level: "Intermediate",
+    industry: "EV / Auto",
+    company: "Ola Electric",
+    tools: ["Notion", "Miro", "ChatGPT", "Google Docs"],
+    techniques: ["Problem-Solution Fit", "Fx|xU Filter Application", "Opportunity Sizing", "Go/No-Go Decision Framework"],
+    outcome: "You'll apply the Fx|xU filter on a live business case and present a validated problem statement.",
+  },
+  {
+    id: 5,
+    title: "Idea to Market (0→1)",
+    subtitle: "Take something from zero to users",
+    duration: "2 weeks",
+    projects: 2,
+    level: "Intermediate",
+    industry: "Gaming",
+    company: "Dream11",
+    tools: ["Notion", "Figma", "Google Sheets", "ChatGPT"],
+    techniques: ["GTM Strategy Design", "Channel-Market Fit", "Viral Loop Mechanics", "Launch Sequencing"],
+    outcome: "You'll rebuild a GTM playbook from scratch.",
+  },
+  {
+    id: 6,
+    title: "Brand Strategy & Positioning",
+    subtitle: "Make them remember you",
+    duration: "2 weeks",
+    projects: 3,
+    level: "Intermediate",
+    industry: "FMCG",
+    company: "Amul",
+    tools: ["Canva", "Notion", "Google Trends", "ChatGPT"],
+    techniques: ["Brand Archetype Mapping", "Positioning Frameworks", "Cultural Relevance Strategy", "Brand Voice"],
+    outcome: "You'll build your own positioning doc — portfolio gold.",
   },
   {
     id: 7,
-    title: "Email Marketing",
-    subtitle: "Own your list",
-    duration: "1 week",
-    projects: 2,
+    title: "Media Strategy & Planning",
+    subtitle: "Decide where money goes",
+    duration: "2 weeks",
+    projects: 3,
     level: "Intermediate",
-    tools: ["Mailchimp", "ConvertKit", "ActiveCampaign", "Beehiiv"],
-    techniques: ["List Segmentation", "Drip Campaigns", "Open Rate Optimization", "Lifecycle Emails"],
-    outcome: "Launch a 5-email welcome sequence that achieves 35%+ open rate on a real subscriber list.",
+    industry: "Telecom",
+    company: "Airtel",
+    tools: ["Google Sheets", "Media Templates", "ChatGPT", "Notion"],
+    techniques: ["Channel Selection", "Budget Allocation", "Reach vs Frequency", "Cross-channel Planning"],
+    outcome: "You'll allocate a ₹100Cr+ media budget like a pro.",
   },
+
+  // AFTER 7 → continue numbering properly
+
   {
     id: 8,
-    title: "Brand Strategy",
-    subtitle: "Define your identity",
+    title: "Search & Website Ecosystem",
+    subtitle: "Own search results",
     duration: "2 weeks",
     projects: 3,
     level: "Advanced",
-    tools: ["Figma", "Adobe Express", "Miro", "Loom"],
-    techniques: ["Brand Archetypes", "Tone of Voice", "Visual Identity", "Messaging Frameworks"],
-    outcome: "Produce a complete brand guidelines deck for a startup client, pitch-ready for investors.",
+    industry: "InsurTech",
+    company: "Policybazaar",
+    tools: ["Ahrefs", "SEMrush", "Search Console", "Screaming Frog"],
+    techniques: ["Technical SEO Audit", "Keyword Clustering", "Content Gap Analysis", "On-page SEO"],
+    outcome: "You'll build a roadmap to own Page 1.",
   },
   {
     id: 9,
-    title: "Influencer & Partnerships",
-    subtitle: "Leverage networks",
-    duration: "1 week",
-    projects: 2,
-    level: "Intermediate",
-    tools: ["Modash", "Grin", "Aspire", "Creator.co"],
-    techniques: ["Creator Outreach", "Campaign Briefs", "ROI Measurement", "Co-marketing"],
-    outcome: "Close and execute one real influencer deal with tracked impressions and conversion data.",
-  },
-  {
-    id: 10,
-    title: "E-commerce Growth",
-    subtitle: "Drive online revenue",
-    duration: "2 weeks",
-    projects: 4,
-    level: "Advanced",
-    tools: ["Shopify", "Klaviyo", "Yotpo", "Gorgias"],
-    techniques: ["Product Listings", "Cart Abandonment", "Upsell Strategy", "Review Generation"],
-    outcome: "Increase a live Shopify store's conversion rate by 20% using tested CRO interventions.",
-  },
-  {
-    id: 11,
-    title: "AI & Automation",
-    subtitle: "Scale with systems",
+    title: "Google Ads Ecosystem",
+    subtitle: "Master Google machine",
     duration: "2 weeks",
     projects: 3,
     level: "Advanced",
-    tools: ["Make.com", "ChatGPT", "Jasper", "n8n"],
-    techniques: ["Prompt Engineering", "Workflow Automation", "AI Content Strategy", "Smart Reporting"],
-    outcome: "Ship an end-to-end automated content and reporting workflow saving 10+ hours per week.",
+    industry: "Home Services",
+    company: "Urban Company",
+    tools: ["Google Ads", "Keyword Planner", "Sheets", "Looker"],
+    techniques: ["Search Campaigns", "YouTube Ads", "PMAX Setup", "Bid Optimization"],
+    outcome: "You'll build a full Google Ads ecosystem.",
   },
   {
+    id: 10,
+    title: "Meta & Social Media",
+    subtitle: "Crack the algorithm",
+    duration: "2 weeks",
+    projects: 3,
+    level: "Intermediate",
+    industry: "Food",
+    company: "Zomato",
+    tools: ["Meta Ads", "Canva", "Notion", "ChatGPT"],
+    techniques: ["Content Strategy", "Audience Targeting", "Creative Testing", "Ad Funnel"],
+    outcome: "You'll run Meta campaigns from scratch.",
+  },
+  {
+    id: 11,
+    title: "Owned Media & Retention",
+    subtitle: "Turn users into lifers",
+    duration: "2 weeks",
+    projects: 3,
+    level: "Advanced",
+    industry: "Fitness",
+    company: "Cult.fit",
+    tools: ["Mailchimp", "WhatsApp", "Sheets", "Notion"],
+    techniques: ["Email Lifecycle", "WhatsApp Automation", "Retention Loops", "CRM Segmentation"],
+    outcome: "You'll design lifecycle systems that drive retention.",
+  },
+
+  // FINAL PHASES (12–15)
+
+  {
     id: 12,
-    title: "Career & Portfolio",
-    subtitle: "Land your dream role",
-    duration: "1 week",
+    title: "Content Marketing & Storytelling",
+    subtitle: "Build content flywheels",
+    duration: "2 weeks",
+    projects: 3,
+    level: "Intermediate",
+    industry: "Fintech",
+    company: "Zerodha",
+    tools: ["Notion", "WordPress", "Canva", "ChatGPT"],
+    techniques: ["Content Strategy", "SEO Content", "Storytelling", "Distribution"],
+    outcome: "You'll build a content engine for organic growth.",
+  },
+  {
+    id: 13,
+    title: "Media Buying & Performance",
+    subtitle: "Scale campaigns",
+    duration: "2 weeks",
+    projects: 3,
+    level: "Advanced",
+    industry: "Sports",
+    company: "Nike India",
+    tools: ["Meta Ads", "Google Ads", "Sheets", "Looker"],
+    techniques: ["Campaign Design", "ROAS Optimization", "Creative Testing", "Marketplace Strategy"],
+    outcome: "You'll run multi-platform campaigns.",
+  },
+  {
+    id: 14,
+    title: "Revenue & Unit Economics",
+    subtitle: "Understand money",
+    duration: "2 weeks",
     projects: 2,
-    level: "All Levels",
-    tools: ["LinkedIn", "Notion", "Contra", "Read.cv"],
-    techniques: ["Portfolio Building", "Personal Branding", "Interview Prep", "Salary Negotiation"],
-    outcome: "Walk out with a live portfolio, optimised LinkedIn, and 3 warm hiring introductions.",
+    level: "Advanced",
+    industry: "Hospitality",
+    company: "OYO",
+    tools: ["Sheets", "Notion", "ChatGPT", "Looker"],
+    techniques: ["CAC vs LTV", "Pricing", "Revenue Models", "Profitability"],
+    outcome: "You'll evaluate if a business actually makes money.",
+  },
+  {
+    id: 15,
+    title: "Systems, Analytics & Scale",
+    subtitle: "Build growth systems",
+    duration: "2 weeks",
+    projects: 3,
+    level: "Advanced",
+    industry: "Music/OTT",
+    company: "Spotify India",
+    tools: ["GA", "Looker", "Zapier", "Sheets"],
+    techniques: ["Dashboards", "Automation", "KPI Tracking", "Growth Loops"],
+    outcome: "You'll build scalable marketing systems.",
+  },
+  {
+    id: 16,
+    title: "Organic Growth & Leadership",
+    subtitle: "Become a marketing leader",
+    duration: "2 weeks",
+    projects: 3,
+    level: "Advanced",
+    industry: "F&B / Lifestyle",
+    company: "Starbucks India",
+    tools: ["Notion", "Trends", "Canva", "ChatGPT"],
+    techniques: ["Community Growth", "Brand Loyalty", "Organic Strategy", "Personal Branding"],
+    outcome: "You'll design a full organic growth playbook.",
   },
 ];
 
@@ -247,73 +329,98 @@ export default function TermToolsPage() {
                 background: "linear-gradient(to top, rgba(11,35,63,0.9), transparent)",
                 pointerEvents: "none", zIndex: 2, borderRadius: "0 0 0 0",
               }} />
-            <div style={{
-              overflowY: "auto",
-              maxHeight: "504px",
-              padding: "14px 14px",
-              display: "flex", flexDirection: "column", gap: "6px",
-              scrollbarWidth: "thin",
-              scrollbarColor: "rgba(96,165,250,0.25) transparent",
-            }}>
-              {TERM_DATA.map((term) => {
-                const isActive = term.id === activeTerm.id;
-                return (
-                  <button
-                    key={term.id}
-                    onClick={() => setActiveTerm(term)}
-                    style={{
-                      display: "flex", alignItems: "center", gap: "14px",
-                      width: "100%", padding: "15px 18px",
-                      borderRadius: "16px", textAlign: "left",
-                      background: isActive ? "white" : "transparent",
-                      border: `1px solid ${isActive ? "white" : "rgba(255,255,255,0.04)"}`,
-                      cursor: "pointer",
-                      transition: "all 0.25s cubic-bezier(0.4, 0, 0.2, 1)",
-                      flexShrink: 0,
-                    }}
-                  >
-                    <span style={{
-                      fontSize: "13px", fontWeight: 900, minWidth: "24px",
-                      color: isActive ? "#0B233F" : "#60A5FA", fontFamily: "serif",
-                    }}>
-                      {term.id < 10 ? `0${term.id}` : term.id}
-                    </span>
-                    <div style={{ flex: 1, minWidth: 0 }}>
-                      <p style={{
-                        margin: "0 0 2px", fontSize: "12px", fontWeight: 800,
-                        color: isActive ? "#0B233F" : "rgba(255,255,255,0.8)",
-                        textTransform: "uppercase", letterSpacing: "0.04em",
-                        whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
+              <div style={{
+                overflowY: "auto",
+                maxHeight: "504px",
+                padding: "14px 14px",
+                display: "flex", flexDirection: "column", gap: "6px",
+                scrollbarWidth: "thin",
+                scrollbarColor: "rgba(96,165,250,0.25) transparent",
+              }}>
+                {TERM_DATA.map((term) => {
+                  const isActive = term.id === activeTerm.id;
+                  return (
+                    <button
+                      key={term.id}
+                      onClick={() => setActiveTerm(term)}
+                      style={{
+                        display: "flex", alignItems: "center", gap: "14px",
+                        width: "100%", padding: "15px 18px",
+                        borderRadius: "16px", textAlign: "left",
+                        background: isActive ? "white" : "transparent",
+                        border: `1px solid ${isActive ? "white" : "rgba(255,255,255,0.04)"}`,
+                        cursor: "pointer",
+                        transition: "all 0.25s cubic-bezier(0.4, 0, 0.2, 1)",
+                        flexShrink: 0,
+                      }}
+                    >
+                      <span style={{
+                        fontSize: "13px", fontWeight: 900, minWidth: "24px",
+                        color: isActive ? "#0B233F" : "#60A5FA", fontFamily: "serif",
                       }}>
-                        {term.title}
-                      </p>
-                      <p style={{
-                        margin: 0, fontSize: "11px", fontWeight: 500,
-                        color: isActive ? "rgba(11,35,63,0.5)" : "rgba(255,255,255,0.35)",
-                        fontStyle: "italic",
-                      }}>
-                        {term.subtitle}
-                      </p>
-                    </div>
-                    {isActive && <Terminal size={13} color="#0B233F" opacity={0.4} />}
-                  </button>
-                );
-              })}
-            </div>
+                        {term.id < 10 ? `0${term.id}` : term.id}
+                      </span>
+                      <div style={{ flex: 1, minWidth: 0 }}>
+                        <p style={{
+                          margin: "0 0 2px", fontSize: "12px", fontWeight: 800,
+                          color: isActive ? "#0B233F" : "rgba(255,255,255,0.8)",
+                          textTransform: "uppercase", letterSpacing: "0.04em",
+                          whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
+                        }}>
+                          {term.title}
+                        </p>
+                        <p style={{
+                          margin: 0, fontSize: "11px", fontWeight: 500,
+                          color: isActive ? "rgba(11,35,63,0.5)" : "rgba(255,255,255,0.35)",
+                          fontStyle: "italic",
+                        }}>
+                          {term.subtitle}
+                        </p>
+                      </div>
+                      {isActive && <Terminal size={13} color="#0B233F" opacity={0.4} />}
+                    </button>
+                  );
+                })}
+              </div>
             </div>{/* end scroll wrapper */}
 
             {/* Enroll CTA pinned bottom */}
-            <div style={{ padding: "14px", flexShrink: 0, borderTop: "1px solid rgba(255,255,255,0.05)" }}>
-              <button style={{
-                display: "flex", alignItems: "center", gap: "8px",
-                background: "#60A5FA", color: "#0B233F", border: "none",
-                borderRadius: "14px", padding: "16px", fontSize: "12px", fontWeight: 800,
-                textTransform: "uppercase", cursor: "pointer", width: "100%",
-                justifyContent: "center", letterSpacing: "0.06em",
-                boxShadow: "0 10px 24px rgba(96,165,250,0.25)",
+            {/* Keywords Section */}
+            <div style={{
+              padding: "16px",
+              flexShrink: 0,
+              borderTop: "1px solid rgba(255,255,255,0.05)"
+            }}>
+              <p style={{
+                fontSize: "10px",
+                fontWeight: 800,
+                color: "rgba(255,255,255,0.3)",
+                textTransform: "uppercase",
+                letterSpacing: "0.2em",
+                marginBottom: "10px"
               }}>
-                Enroll Now <ArrowRight size={14} />
-              </button>
+                Keywords
+              </p>
+
+              <div style={{
+                display: "flex",
+                flexWrap: "wrap",
+                gap: "8px"
+              }}>
+                {activeTerm.techniques.slice(0, 4).map((tag, i) => (
+                  <span key={i} style={{
+                    fontSize: "11px",
+                    fontWeight: 600,
+                    padding: "6px 12px",
+                    borderRadius: "999px",
+                    background: "rgba(255,255,255,0.05)",
+                    border: "1px solid rgba(255,255,255,0.1)",
+                    color: "rgba(255,255,255,0.7)"
+                  }}>
+                    {tag}
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
 
@@ -366,6 +473,52 @@ export default function TermToolsPage() {
                 ))}
               </div>
             </div>
+            {/* Industry */}
+<div style={{ flexShrink: 0 }}>
+  <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "16px" }}>
+    <BarChart2 size={14} color="#60A5FA" />
+    <h3 style={{
+      margin: 0,
+      fontSize: "11px",
+      fontWeight: 800,
+      color: "rgba(255,255,255,0.3)",
+      textTransform: "uppercase",
+      letterSpacing: "0.2em"
+    }}>
+      Industry
+    </h3>
+    <div style={{ flex: 1, height: "1px", background: "rgba(255,255,255,0.05)" }} />
+  </div>
+
+  {/* SAME STYLE AS TECH STACK */}
+  <div style={{ display: "flex", flexWrap: "wrap", gap: "10px" }}>
+    
+    <div style={{
+      padding: "11px 22px",
+      borderRadius: "14px",
+      background: "rgba(255,255,255,0.05)",
+      border: "1px solid rgba(255,255,255,0.1)",
+      fontSize: "13px",
+      fontWeight: 700,
+      color: "white",
+    }}>
+      {activeTerm.industry}
+    </div>
+
+    <div style={{
+      padding: "11px 22px",
+      borderRadius: "14px",
+      background: "rgba(255,255,255,0.05)",
+      border: "1px solid rgba(255,255,255,0.1)",
+      fontSize: "13px",
+      fontWeight: 700,
+      color: "white",
+    }}>
+      {activeTerm.company}
+    </div>
+
+  </div>
+</div>
 
             {/* Tech Stack */}
             <div style={{ flexShrink: 0 }}>

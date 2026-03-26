@@ -21,42 +21,35 @@ const logos = [
 export function TrustedBySlider() {
   return (
     <section
-      className="py-24 overflow-hidden relative"
-      style={{ background: '#ecd7ff' }}
+      className="overflow-hidden relative"
+      style={{ background: '#ecd7ff', padding: '0 0 48px', marginTop: 0 }}
     >
-      {/* Top flow bleed */}
-      <div style={{
-        position: 'absolute', top: 0, left: 0, right: 0, height: '100px',
-        background: 'linear-gradient(to bottom, rgba(255,255,255,0.3), transparent)', zIndex: 1
-      }} />
+      {/* Top flow bleed — removed */}
 
       {/* Blueprint lines */}
       <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', opacity: 0.1 }}>
         <div style={{ position: 'absolute', inset: 0, backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 39px, #7C3AED 39px, #7C3AED 40px)' }} />
       </div>
 
-      <div className="w-full px-[5%] relative z-10">
+      <div className="w-full px-[5%] relative z-10" style={{ paddingTop: 0 }}>
 
-        {/* HEADER — site-consistent style */}
-        <div style={{ textAlign: 'center', marginBottom: '64px' }}>
-
-          {/* Pill */}
+        {/* HEADER */}
+        <div style={{ textAlign: 'center', marginBottom: '36px', paddingTop: '28px' }}>
           <div style={{
             display: 'inline-flex', alignItems: 'center', gap: '8px',
             background: 'white', border: '1px solid rgba(88,41,229,0.1)',
-            borderRadius: '999px', padding: '6px 18px', marginBottom: '20px',
+            borderRadius: '999px', padding: '5px 14px', marginBottom: '14px',
             boxShadow: '0 4px 12px rgba(0,0,0,0.04)',
           }}>
-            <Sparkles size={12} color="#5829E5" />
+            <Sparkles size={11} color="#5829E5" />
             <span style={{ fontSize: '10px', fontWeight: 800, color: '#5829E5', letterSpacing: '0.2em', textTransform: 'uppercase' }}>
               Global Recognition
             </span>
           </div>
 
-          {/* Title — single line */}
           <h2 style={{ margin: 0, lineHeight: 1.05, whiteSpace: 'nowrap' }}>
             <span style={{
-              fontSize: 'clamp(28px, 4vw, 54px)',
+              fontSize: 'clamp(24px, 3vw, 42px)',
               fontWeight: 900,
               color: '#1A0B35',
               letterSpacing: '-0.04em',
@@ -65,11 +58,11 @@ export function TrustedBySlider() {
             </span>
             <span style={{
               display: 'inline-block',
-              fontSize: 'clamp(28px, 4vw, 54px)',
+              fontSize: 'clamp(24px, 3vw, 42px)',
               fontWeight: 900,
               fontStyle: 'italic',
               letterSpacing: '-0.04em',
-              paddingBottom: '6px',
+              paddingBottom: '4px',
               background: 'linear-gradient(to right, #5829E5 0%, #311882 60%, #7C3AED 100%)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
@@ -78,17 +71,16 @@ export function TrustedBySlider() {
               500+ Top Brands
             </span>
           </h2>
-
         </div>
 
         {/* LOGO ROWS */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '48px' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '28px' }}>
 
           {/* ROW 1 → RIGHT */}
           <div className="relative overflow-hidden">
-            <div className="absolute inset-y-0 left-0 w-32 z-10" style={{ background: 'linear-gradient(to right, #ecd7ff, transparent)' }} />
-            <div className="absolute inset-y-0 right-0 w-32 z-10" style={{ background: 'linear-gradient(to left, #ecd7ff, transparent)' }} />
-            <div className="flex w-max gap-20 animate-scroll-right">
+            <div className="absolute inset-y-0 left-0 w-24 z-10" style={{ background: 'linear-gradient(to right, #ecd7ff, transparent)' }} />
+            <div className="absolute inset-y-0 right-0 w-24 z-10" style={{ background: 'linear-gradient(to left, #ecd7ff, transparent)' }} />
+            <div className="flex w-max gap-14 animate-scroll-right">
               {[...logos, ...logos].map((logo, index) => (
                 <Logo key={`row1-${logo.name}-${index}`} logo={logo} />
               ))}
@@ -97,9 +89,9 @@ export function TrustedBySlider() {
 
           {/* ROW 2 → LEFT */}
           <div className="relative overflow-hidden">
-            <div className="absolute inset-y-0 left-0 w-32 z-10" style={{ background: 'linear-gradient(to right, #ecd7ff, transparent)' }} />
-            <div className="absolute inset-y-0 right-0 w-32 z-10" style={{ background: 'linear-gradient(to left, #ecd7ff, transparent)' }} />
-            <div className="flex w-max gap-20 animate-scroll-left">
+            <div className="absolute inset-y-0 left-0 w-24 z-10" style={{ background: 'linear-gradient(to right, #ecd7ff, transparent)' }} />
+            <div className="absolute inset-y-0 right-0 w-24 z-10" style={{ background: 'linear-gradient(to left, #ecd7ff, transparent)' }} />
+            <div className="flex w-max gap-14 animate-scroll-left">
               {[...logos, ...logos].map((logo, index) => (
                 <Logo key={`row2-${logo.name}-${index}`} logo={logo} />
               ))}
@@ -122,7 +114,7 @@ export function TrustedBySlider() {
 function Logo({ logo }: { logo: { name: string; src: string } }) {
   return (
     <div
-      className="flex items-center justify-center min-w-[140px]"
+      className="flex items-center justify-center min-w-[110px]"
       style={{ opacity: 0.4, transition: 'all 400ms ease', filter: 'grayscale(1) brightness(0.2)' }}
       onMouseEnter={e => {
         (e.currentTarget as HTMLElement).style.opacity = '1';
@@ -135,7 +127,7 @@ function Logo({ logo }: { logo: { name: string; src: string } }) {
         (e.currentTarget as HTMLElement).style.transform = 'scale(1)';
       }}
     >
-      <Image src={logo.src} alt={logo.name} width={130} height={50} className="object-contain" />
+      <Image src={logo.src} alt={logo.name} width={110} height={40} className="object-contain" />
     </div>
   );
 }
