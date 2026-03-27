@@ -27,11 +27,11 @@ const TacFooter = () => {
           <div className="text-left md:text-center">
             <p className="text-[10px] font-bold uppercase tracking-widest text-purple-400 mb-2">Get in Touch</p>
             <a 
-              href="mailto:hello@theartcode.com" 
+              href="mailto:admission@treqo.org" 
               className="group flex items-center gap-2 text-lg font-medium hover:text-purple-400 transition-colors"
             >
               <Mail size={20} className="text-slate-500 group-hover:text-purple-400" />
-              hello@theartcode.com
+              admission@treqo.org
             </a>
           </div>
         </div>
