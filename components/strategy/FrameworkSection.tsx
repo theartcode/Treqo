@@ -87,7 +87,7 @@ export function FrameworkSection() {
         position: "relative",
         background: "#0F051F",
         overflow: "hidden",
-        padding: "160px 0 200px", // top reduced to pull cards up
+        padding: "50px 0 50px", // top reduced to pull cards up
         fontFamily: "'DM Sans','Segoe UI',system-ui,sans-serif",
         width: "100%",
       }}

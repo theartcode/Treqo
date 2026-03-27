@@ -231,7 +231,7 @@ export default function TermToolsPage() {
   const [activeTerm, setActiveTerm] = useState(TERM_DATA[0]);
 
   return (
-    <section style={{
+    <section className="tts-section" style={{
       background: "#0B233F",
       minHeight: "100vh",
       position: "relative",
@@ -252,7 +252,7 @@ export default function TermToolsPage() {
         }} />
       </div>
 
-      <div style={{
+      <div className="tts-inner" style={{
         position: "relative", zIndex: 10,
         maxWidth: "1440px", width: "100%",
         margin: "0 auto", padding: "0 4%",
@@ -273,15 +273,15 @@ export default function TermToolsPage() {
             </span>
           </div>
 
-          <h2 style={{ margin: "0 auto 10px", lineHeight: 1.0, letterSpacing: "-0.04em" }}>
+          <h2 style={{ margin: "0 auto 10px", lineHeight: 1.0, letterSpacing: "-0.04em", display: "flex", justifyContent: "center", flexWrap: "wrap", gap: "10px", alignItems: "baseline" }}>
             <span style={{
-              display: "block", fontSize: "clamp(38px, 4.5vw, 62px)", fontWeight: 900,
+              fontSize: "clamp(24px, 2.8vw, 44px)", fontWeight: 900,
               background: "linear-gradient(to right, #FFFFFF 0%, #acbfef 35%, #86bcff 36%, #ffffff 100%)",
               backgroundClip: "text", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent",
             }}>
               What You'll Learn
             </span>
-            <span style={{ display: "block", fontSize: "clamp(38px, 4.5vw, 62px)", fontWeight: 900, color: "white", fontStyle: "italic" }}>
+            <span style={{ fontSize: "clamp(24px, 2.8vw, 44px)", fontWeight: 900, color: "white", fontStyle: "italic" }}>
               Inside The System
             </span>
           </h2>
@@ -292,21 +292,21 @@ export default function TermToolsPage() {
         </div>
 
         {/* MAIN LAYOUT — fills all remaining height */}
-        <div style={{
+        <div className="tts-grid" style={{
           display: "grid",
           gridTemplateColumns: "340px 1fr",
           borderRadius: "36px",
-          overflow: "hidden",
           border: "1px solid rgba(255,255,255,0.1)",
           background: "rgba(255,255,255,0.03)",
           backdropFilter: "blur(20px)",
           boxShadow: "0 40px 100px rgba(0,0,0,0.4)",
           flex: 1,
           minHeight: 0,
+          overflow: "hidden",
         }}>
 
           {/* ── LEFT PANEL ── */}
-          <div style={{
+          <div className="tts-left" style={{
             background: "rgba(255,255,255,0.02)",
             borderRight: "1px solid rgba(255,255,255,0.05)",
             display: "flex", flexDirection: "column", minHeight: 0,
@@ -329,7 +329,7 @@ export default function TermToolsPage() {
                 background: "linear-gradient(to top, rgba(11,35,63,0.9), transparent)",
                 pointerEvents: "none", zIndex: 2, borderRadius: "0 0 0 0",
               }} />
-              <div style={{
+              <div className="tts-tabs" style={{
                 overflowY: "auto",
                 maxHeight: "504px",
                 padding: "14px 14px",
@@ -425,7 +425,7 @@ export default function TermToolsPage() {
           </div>
 
           {/* ── RIGHT PANEL ── */}
-          <div style={{
+          <div className="tts-right" style={{
             overflowY: "auto", display: "flex", flexDirection: "column",
             padding: "44px 60px", gap: "32px",
           }}>
@@ -547,7 +547,7 @@ export default function TermToolsPage() {
                 <h3 style={{ margin: 0, fontSize: "11px", fontWeight: 800, color: "rgba(255,255,255,0.3)", textTransform: "uppercase", letterSpacing: "0.2em" }}>Core Methodology</h3>
                 <div style={{ flex: 1, height: "1px", background: "rgba(255,255,255,0.05)" }} />
               </div>
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px" }}>
+              <div className="tts-methodology-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px" }}>
                 {activeTerm.techniques.map((tech, i) => (
                   <div key={i} style={{
                     display: "flex", alignItems: "center", gap: "16px",
@@ -593,6 +593,97 @@ export default function TermToolsPage() {
         div::-webkit-scrollbar-track { background: transparent; }
         div::-webkit-scrollbar-thumb { background: rgba(96,165,250,0.2); border-radius: 99px; }
         div::-webkit-scrollbar-thumb:hover { background: rgba(96,165,250,0.4); }
+
+        /* ── TABLET ≤ 1024px ── */
+        @media (max-width: 1024px) {
+          .tts-grid { grid-template-columns: 260px 1fr !important; }
+          .tts-right { padding: 28px 28px !important; }
+        }
+
+        /* ── MOBILE ≤ 768px ── */
+        @media (max-width: 768px) {
+          /* Section: remove height lock + overflow clip */
+          .tts-section {
+            overflow: visible !important;
+            min-height: unset !important;
+            height: auto !important;
+            padding: 32px 0 48px !important;
+          }
+
+          /* Inner container: stop being a flex child with minHeight */
+          .tts-inner {
+            flex: none !important;
+            min-height: unset !important;
+            height: auto !important;
+          }
+
+          /* Grid: single column, no height constraint, no overflow clip */
+          .tts-grid {
+            display: flex !important;
+            flex-direction: column !important;
+            flex: none !important;
+            overflow: visible !important;
+            min-height: unset !important;
+            height: auto !important;
+            border-radius: 20px !important;
+          }
+
+          /* Left panel: natural height, horizontal tab scroll */
+          .tts-left {
+            border-right: none !important;
+            border-bottom: 1px solid rgba(255,255,255,0.07) !important;
+            min-height: unset !important;
+            height: auto !important;
+          }
+
+          /* Tab scroll: horizontal pill row */
+          .tts-tabs {
+            display: flex !important;
+            flex-direction: row !important;
+            overflow-x: auto !important;
+            overflow-y: hidden !important;
+            max-height: none !important;
+            height: auto !important;
+            padding: 10px 10px !important;
+            gap: 8px !important;
+            scrollbar-width: none !important;
+            flex-shrink: 0 !important;
+          }
+          .tts-tabs::-webkit-scrollbar { display: none !important; }
+
+          /* Each tab: compact pill, no full width */
+          .tts-tabs > button {
+            flex-shrink: 0 !important;
+            width: auto !important;
+            min-width: 0 !important;
+            padding: 10px 14px !important;
+            border-radius: 12px !important;
+          }
+
+          /* Hide subtitle in tabs on mobile to save space */
+          .tts-tabs > button > div > p:last-child {
+            display: none !important;
+          }
+
+          /* Right panel: full width, comfortable padding, natural scroll */
+          .tts-right {
+            width: 100% !important;
+            padding: 20px 16px 28px !important;
+            gap: 20px !important;
+            overflow: visible !important;
+            height: auto !important;
+          }
+
+          /* Core methodology: 1 column on mobile */
+          .tts-methodology-grid {
+            grid-template-columns: 1fr !important;
+          }
+
+          /* Meta chips: wrap nicely */
+          .tts-meta-chips {
+            flex-wrap: wrap !important;
+          }
+        }
       `}</style>
     </section>
   );

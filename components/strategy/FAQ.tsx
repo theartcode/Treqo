@@ -111,10 +111,10 @@ export default function FAQSection() {
         </div>
 
         {/* ── MAIN LAYOUT ── */}
-        <div style={{ display: "grid", gridTemplateColumns: "220px 1fr", gap: 28, alignItems: "start" }}>
+        <div className="faq-layout" style={{ display: "grid", gridTemplateColumns: "220px 1fr", gap: 28, alignItems: "start" }}>
 
           {/* LEFT — tab nav */}
-          <div style={{
+          <div className="faq-tabs" style={{
             display: "flex", flexDirection: "column", gap: 4,
             background: "#F8F7FF", border: "1px solid #EDE9FE",
             borderRadius: 20, padding: 8,
@@ -144,11 +144,11 @@ export default function FAQSection() {
             })}
 
             {/* item count hint */}
-            <div style={{ borderTop: "1px solid #EDE9FE", marginTop: 4, paddingTop: 10, paddingLeft: 6 }}>
+            {/* <div style={{ borderTop: "1px solid #EDE9FE", marginTop: 4, paddingTop: 10, paddingLeft: 6 }}>
               <span style={{ fontSize: 10, color: "#94A3B8", fontWeight: 600 }}>
                 {faqData[activeTab as keyof typeof faqData].length} questions
               </span>
-            </div>
+            </div> */}
           </div>
 
           {/* RIGHT — accordion */}
@@ -160,6 +160,7 @@ export default function FAQSection() {
               exit={{ opacity: 0, x: -10 }}
               transition={{ duration: 0.22 }}
               style={{ display: "flex", flexDirection: "column", gap: 8, height: "480px", overflowY: "auto", paddingRight: 6 }}
+              className="faq-panel"
             >
               {faqData[activeTab as keyof typeof faqData].map((item, idx) => (
                 <AccordionItem
@@ -177,6 +178,41 @@ export default function FAQSection() {
       <style>{`
         div::-webkit-scrollbar { width: 3px; }
         div::-webkit-scrollbar-thumb { background: #DDD6FE; border-radius: 99px; }
+
+        /* ── TABLET ≤ 900px ── */
+        @media (max-width: 900px) {
+          .faq-layout {
+            grid-template-columns: 180px 1fr !important;
+            gap: 18px !important;
+          }
+        }
+
+        /* ── MOBILE ≤ 640px ── */
+        @media (max-width: 640px) {
+          .faq-layout {
+            grid-template-columns: 1fr !important;
+            gap: 16px !important;
+          }
+          .faq-tabs {
+            flex-direction: row !important;
+            flex-wrap: wrap !important;
+            position: static !important;
+            padding: 6px !important;
+            gap: 6px !important;
+          }
+          .faq-tabs > button {
+            flex: 1 1 auto !important;
+            text-align: center !important;
+            justify-content: center !important;
+            font-size: 11px !important;
+            padding: 8px 10px !important;
+          }
+          .faq-panel {
+            height: auto !important;
+            overflow-y: visible !important;
+            padding-right: 0 !important;
+          }
+        }
       `}</style>
     </section>
   );

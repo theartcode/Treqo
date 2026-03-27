@@ -44,10 +44,10 @@ export function LaptopShowcaseSection() {
       {/* ══════════════════════════════════════════════
           TOP HALF — deep purple
       ══════════════════════════════════════════════ */}
-      <div style={{
+      <div className="ls-top" style={{
         background: "linear-gradient(160deg, #1A0B35 0%, #2D1060 55%, #1A0B35 100%)",
-        paddingTop: 100,
-        paddingBottom: 320, /* extra so laptop overlaps */
+        paddingTop: 60,
+        paddingBottom: 320,
         position: "relative",
         overflow: "hidden",
       }}>
@@ -79,11 +79,11 @@ export function LaptopShowcaseSection() {
           </div>
 
           <h2 style={{ margin: "0 0 18px", lineHeight: 1.05, letterSpacing: "-0.03em" }}>
-            <span style={{ display: "block", fontSize: "clamp(40px, 5vw, 70px)", fontWeight: 900, color: "white" }}>
+            <span className="ls-title" style={{ display: "block", fontSize: "clamp(28px, 3.5vw, 48px)", fontWeight: 900, color: "white" }}>
               Your Dashboard,
             </span>
-            <span style={{
-              display: "block", fontSize: "clamp(40px, 5vw, 70px)", fontWeight: 900, fontStyle: "italic",
+            <span className="ls-title" style={{
+              display: "block", fontSize: "clamp(28px, 3.5vw, 48px)", fontWeight: 900, fontStyle: "italic",
               background: "linear-gradient(90deg, #C4B5FD 0%, #A78BFA 40%, #7C3AED 100%)",
               WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent",
             }}>
@@ -91,15 +91,15 @@ export function LaptopShowcaseSection() {
             </span>
           </h2>
 
-          <p style={{ fontSize: 17, color: "rgba(255,255,255,0.5)", lineHeight: 1.75, maxWidth: 560, margin: "0 auto 44px", fontWeight: 500 }}>
+          <p className="ls-desc" style={{ fontSize: 17, color: "rgba(255,255,255,0.5)", lineHeight: 1.75, maxWidth: 560, margin: "0 auto 44px", fontWeight: 500 }}>
             Every metric you see below is what you'll move — live campaigns, real spend, real results. Not theory. Execution.
           </p>
 
           {/* 3 stats */}
-          <div style={{ display: "flex", justifyContent: "center", gap: 56 }}>
+          <div className="ls-stats" style={{ display: "flex", justifyContent: "center", gap: 56 }}>
             {[["30+", "Live Projects"], ["16", "Terms"], ["100%", "Placement"]].map(([num, lbl]) => (
               <div key={lbl} style={{ textAlign: "center" }}>
-                <div style={{ fontSize: 36, fontWeight: 900, color: "white", letterSpacing: "-0.04em" }}>{num}</div>
+                <div className="ls-stat-num" style={{ fontSize: 36, fontWeight: 900, color: "white", letterSpacing: "-0.04em" }}>{num}</div>
                 <div style={{ fontSize: 11, fontWeight: 700, color: "rgba(255,255,255,0.35)", textTransform: "uppercase", letterSpacing: "0.12em", marginTop: 4 }}>{lbl}</div>
               </div>
             ))}
@@ -110,7 +110,7 @@ export function LaptopShowcaseSection() {
       {/* ══════════════════════════════════════════════
           BOTTOM HALF — soft lavender/white
       ══════════════════════════════════════════════ */}
-      <div style={{
+      <div className="ls-bottom" style={{
         background: "linear-gradient(180deg, #EDE5FF 0%, #F5F0FF 60%, #FFFFFF 100%)",
         paddingTop: 260,
         paddingBottom: 80,
@@ -124,14 +124,14 @@ export function LaptopShowcaseSection() {
         }} />
 
         {/* bottom floating badges */}
-        <div style={{ position: "relative", zIndex: 2, display: "flex", justifyContent: "center", gap: 16, flexWrap: "wrap", padding: "0 5%" }}>
+        <div className="ls-badges" style={{ position: "relative", zIndex: 2, display: "flex", justifyContent: "center", gap: 16, flexWrap: "wrap", padding: "0 5%" }}>
           {[
             { icon: Target,     label: "Meta Ads",    val: "ROAS 4.2x",  color: "#0082FB" },
             { icon: Search,     label: "SEO",         val: "DR 42 ↑",    color: "#7C3AED" },
             { icon: Mail,       label: "Email",       val: "42% Open",   color: "#10B981" },
             { icon: BarChart2,  label: "GA4",         val: "12k Sessions",color: "#F59E0B"},
           ].map(({ icon: Icon, label, val, color }) => (
-            <div key={label} style={{
+            <div className="ls-badge" key={label} style={{
               display: "flex", alignItems: "center", gap: 12,
               background: "white", borderRadius: 16,
               padding: "14px 20px",
@@ -157,7 +157,7 @@ export function LaptopShowcaseSection() {
       {/* ══════════════════════════════════════════════
           LAPTOP — absolutely centered, straddles split
       ══════════════════════════════════════════════ */}
-      <div style={{
+      <div className="ls-laptop" style={{
         position: "absolute",
         top: "60%",
         left: "50%",
@@ -168,7 +168,7 @@ export function LaptopShowcaseSection() {
       }}>
 
         {/* floating chip top-right */}
-        <div style={{
+        <div className="ls-chip-top" style={{
           position: "absolute", top: -16, right: "8%", zIndex: 30,
           background: "white", borderRadius: 14, padding: "10px 18px",
           boxShadow: "0 8px 28px rgba(88,41,229,0.18)",
@@ -183,7 +183,7 @@ export function LaptopShowcaseSection() {
         </div>
 
         {/* floating chip bottom-left */}
-        <div style={{
+        <div className="ls-chip-btm" style={{
           position: "absolute", bottom: 56, left: "4%", zIndex: 30,
           background: "#1A0B35", borderRadius: 14, padding: "10px 18px",
           boxShadow: "0 8px 28px rgba(0,0,0,0.3)",
@@ -429,6 +429,45 @@ export function LaptopShowcaseSection() {
         @keyframes floatB {
           0%,100% { transform: translateY(0) rotate(1deg); }
           50%      { transform: translateY(-9px) rotate(-1deg); }
+        }
+
+        /* ── TABLET ≤ 900px ── */
+        @media (max-width: 900px) {
+          .ls-top    { padding-bottom: 220px !important; }
+          .ls-bottom { padding-top: 180px !important; }
+          .ls-laptop { width: min(820px, 94vw) !important; }
+        }
+
+        /* ── MOBILE ≤ 640px ── */
+        @media (max-width: 640px) {
+          .ls-top {
+            padding-top: 60px !important;
+            padding-bottom: 160px !important;
+          }
+          .ls-bottom {
+            padding-top: 120px !important;
+            padding-bottom: 48px !important;
+          }
+          .ls-title  { font-size: clamp(28px, 8vw, 44px) !important; }
+          .ls-desc   { font-size: 14px !important; margin-bottom: 28px !important; }
+          .ls-stats  { gap: 28px !important; }
+          .ls-stat-num { font-size: 26px !important; }
+          .ls-laptop {
+            width: min(680px, 96vw) !important;
+            top: 55% !important;
+          }
+          .ls-chip-top  { display: none !important; }
+          .ls-chip-btm  { display: none !important; }
+          .ls-badges    { gap: 10px !important; }
+          .ls-badge     { padding: 10px 14px !important; }
+        }
+
+        /* ── SMALL MOBILE ≤ 420px ── */
+        @media (max-width: 420px) {
+          .ls-top    { padding-bottom: 130px !important; }
+          .ls-bottom { padding-top: 100px !important; }
+          .ls-laptop { width: 98vw !important; top: 52% !important; }
+          .ls-stats  { gap: 20px !important; flex-wrap: wrap !important; justify-content: center !important; }
         }
       `}</style>
     </section>

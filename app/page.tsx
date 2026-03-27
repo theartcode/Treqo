@@ -40,21 +40,24 @@ export default function Home() {
 
       <FrameworkSection />
 
-      <TrustedBySlider />
-
-      <TacExecutionPipeline />
+      <Design2 />
+      <LaptopShowcaseSection />
 
       <TermToolsPage />
 
-      <ToolStackSection />
-
-      <LaptopShowcaseSection />
-
-      <Design2 />
+      <TrustedBySlider />
 
       <Tools />
+      <ToolStackSection />
 
-      <Testimonials />
+
+
+
+
+
+
+
+      {/* <Testimonials /> */}
 
       <FAQSection />
 
