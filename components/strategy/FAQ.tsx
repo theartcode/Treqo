@@ -71,23 +71,20 @@ const faqData = {
 
 export default function FAQSection() {
   const [activeTab, setActiveTab] = useState("About Treqo");
-  const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
     <section style={{
       background: "white",
       padding: "72px 5%",
-      minHeight: "100vh",
-      display: "flex",
-      alignItems: "center",
       fontFamily: "'DM Sans','Segoe UI',system-ui,sans-serif",
       color: "#0F172A",
       width: "100%",
-      overflow: "hidden",
+      boxSizing: "border-box",
     }}>
-      <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+      <div style={{ maxWidth: 1200, margin: "0 auto", width: "100%" }}>
 
-        {/* ── HEADER ── */}
+        {/* HEADER */}
         <div style={{ textAlign: "center", marginBottom: 48 }}>
           <div style={{
             display: "inline-flex", alignItems: "center", gap: 7,
@@ -99,7 +96,6 @@ export default function FAQSection() {
               Support Center
             </span>
           </div>
-
           <h2 style={{ margin: 0, lineHeight: 1.05 }}>
             <span style={{ display: "inline", fontSize: "clamp(28px, 3.5vw, 46px)", fontWeight: 900, color: "#0F172A", letterSpacing: "-0.03em" }}>
               Frequently Asked{" "}
@@ -110,15 +106,21 @@ export default function FAQSection() {
           </h2>
         </div>
 
-        {/* ── MAIN LAYOUT ── */}
-        <div className="faq-layout" style={{ display: "grid", gridTemplateColumns: "220px 1fr", gap: 28, alignItems: "start" }}>
+        {/* MAIN LAYOUT — fixed height container, this NEVER changes */}
+        <div style={{
+          height: "560px",           // ← THE KEY: fixed height on outer wrapper
+          overflow: "hidden",        // ← clips everything inside
+          display: "grid",
+          gridTemplateColumns: "220px 1fr",
+          gap: 28,
+          alignItems: "start",
+        }} className="faq-layout">
 
-          {/* LEFT — tab nav */}
+          {/* LEFT TABS */}
           <div className="faq-tabs" style={{
             display: "flex", flexDirection: "column", gap: 4,
             background: "#F8F7FF", border: "1px solid #EDE9FE",
             borderRadius: 20, padding: 8,
-            position: "sticky", top: 24,
           }}>
             {Object.keys(faqData).map(tab => {
               const isActive = activeTab === tab;
@@ -142,44 +144,51 @@ export default function FAQSection() {
                 </button>
               );
             })}
-
-            {/* item count hint */}
-            {/* <div style={{ borderTop: "1px solid #EDE9FE", marginTop: 4, paddingTop: 10, paddingLeft: 6 }}>
-              <span style={{ fontSize: 10, color: "#94A3B8", fontWeight: 600 }}>
-                {faqData[activeTab as keyof typeof faqData].length} questions
-              </span>
-            </div> */}
           </div>
 
-          {/* RIGHT — accordion */}
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeTab}
-              initial={{ opacity: 0, x: 10 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -10 }}
-              transition={{ duration: 0.22 }}
-              style={{ display: "flex", flexDirection: "column", gap: 8, height: "480px", overflowY: "auto", paddingRight: 6 }}
-              className="faq-panel"
-            >
-              {faqData[activeTab as keyof typeof faqData].map((item, idx) => (
-                <AccordionItem
-                  key={`${activeTab}-${idx}`}
-                  question={item.q}
-                  answer={item.a}
-                  isOpen={openIndex === idx}
-                  onClick={() => setOpenIndex(openIndex === idx ? null : idx)}
-                />
-              ))}
-            </motion.div>
-          </AnimatePresence>
+          {/* RIGHT PANEL — scrolls inside, never pushes layout */}
+          <div style={{
+            height: "560px",         // ← same fixed height
+            overflowY: "auto",
+            overflowX: "hidden",
+            position: "relative",
+          }}>
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeTab}
+                initial={{ opacity: 0, x: 10 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -10 }}
+                transition={{ duration: 0.22 }}
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: 8,
+                  paddingRight: 6,
+                  paddingBottom: 8,
+                }}
+                className="faq-panel"
+              >
+                {faqData[activeTab as keyof typeof faqData].map((item, idx) => (
+                  <AccordionItem
+                    key={`${activeTab}-${idx}`}
+                    question={item.q}
+                    answer={item.a}
+                    isOpen={openIndex === idx}
+                    onClick={() => setOpenIndex(openIndex === idx ? null : idx)}
+                  />
+                ))}
+              </motion.div>
+            </AnimatePresence>
+          </div>
+
         </div>
       </div>
+
       <style>{`
         div::-webkit-scrollbar { width: 3px; }
         div::-webkit-scrollbar-thumb { background: #DDD6FE; border-radius: 99px; }
 
-        /* ── TABLET ≤ 900px ── */
         @media (max-width: 900px) {
           .faq-layout {
             grid-template-columns: 180px 1fr !important;
@@ -187,9 +196,10 @@ export default function FAQSection() {
           }
         }
 
-        /* ── MOBILE ≤ 640px ── */
         @media (max-width: 640px) {
           .faq-layout {
+            height: auto !important;
+            overflow: visible !important;
             grid-template-columns: 1fr !important;
             gap: 16px !important;
           }
@@ -210,7 +220,6 @@ export default function FAQSection() {
           .faq-panel {
             height: auto !important;
             overflow-y: visible !important;
-            padding-right: 0 !important;
           }
         }
       `}</style>
@@ -223,13 +232,14 @@ function AccordionItem({ question, answer, isOpen, onClick }: {
 }) {
   return (
     <div style={{
-      borderRadius: 16, overflow: "hidden",
+      borderRadius: 16,
+      overflow: "hidden",
       border: isOpen ? "1px solid #DDD6FE" : "1px solid #F1F5F9",
       background: isOpen ? "#FDFCFF" : "white",
       boxShadow: isOpen ? "0 4px 20px rgba(88,41,229,0.07)" : "0 1px 4px rgba(0,0,0,0.03)",
       transition: "all 0.3s ease",
+      flexShrink: 0,
     }}>
-      {/* question row */}
       <button
         onClick={onClick}
         style={{
@@ -253,7 +263,6 @@ function AccordionItem({ question, answer, isOpen, onClick }: {
         </div>
       </button>
 
-      {/* answer */}
       <AnimatePresence>
         {isOpen && (
           <motion.div

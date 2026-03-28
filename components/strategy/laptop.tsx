@@ -1,9 +1,8 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
-import { TrendingUp, MousePointer, BarChart2, Zap, Target, Globe, Mail, Search } from "lucide-react";
+import { useEffect, useState } from "react";
+import { TrendingUp, BarChart2, Target, Mail, Search } from "lucide-react";
 
-/* ─── live feed ticker ──────────────────────────────────────────────────────── */
 const FEED = [
   { dot: "#34D399", msg: "Meta Ads · 1,240 leads synced · CTR 8.4% · ROAS 4.2x" },
   { dot: "#60A5FA", msg: "GA4 · 12,841 sessions · Bounce 28% · CVR 4.2%" },
@@ -14,7 +13,6 @@ const FEED = [
   { dot: "#60A5FA", msg: "LinkedIn Ads · 220 B2B leads · CPL ₹184 · CTR 1.8%" },
 ];
 
-/* bars for the chart */
 const BARS = [32, 48, 42, 62, 55, 70, 58, 78, 64, 85, 72, 91];
 
 export function LaptopShowcaseSection() {
@@ -41,23 +39,19 @@ export function LaptopShowcaseSection() {
       overflow: "hidden",
     }}>
 
-      {/* ══════════════════════════════════════════════
-          TOP HALF — deep purple
-      ══════════════════════════════════════════════ */}
+      {/* ══ TOP HALF ══ */}
       <div className="ls-top" style={{
         background: "linear-gradient(160deg, #1A0B35 0%, #2D1060 55%, #1A0B35 100%)",
         paddingTop: 60,
-        paddingBottom: 320,
+        paddingBottom: 280,
         position: "relative",
         overflow: "hidden",
       }}>
-        {/* dot grid */}
         <div style={{
           position: "absolute", inset: 0, pointerEvents: "none",
           backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.07) 1px, transparent 1px)",
           backgroundSize: "36px 36px",
         }} />
-        {/* glow */}
         <div style={{
           position: "absolute", top: "-20%", left: "50%", transform: "translateX(-50%)",
           width: 700, height: 400, borderRadius: "50%",
@@ -65,7 +59,6 @@ export function LaptopShowcaseSection() {
           pointerEvents: "none",
         }} />
 
-        {/* text content */}
         <div style={{ position: "relative", zIndex: 2, textAlign: "center", padding: "0 5%" }}>
           <div style={{
             display: "inline-flex", alignItems: "center", gap: 8,
@@ -95,7 +88,6 @@ export function LaptopShowcaseSection() {
             Every metric you see below is what you'll move — live campaigns, real spend, real results. Not theory. Execution.
           </p>
 
-          {/* 3 stats */}
           <div className="ls-stats" style={{ display: "flex", justifyContent: "center", gap: 56 }}>
             {[["30+", "Live Projects"], ["16", "Terms"], ["100%", "Placement"]].map(([num, lbl]) => (
               <div key={lbl} style={{ textAlign: "center" }}>
@@ -107,29 +99,25 @@ export function LaptopShowcaseSection() {
         </div>
       </div>
 
-      {/* ══════════════════════════════════════════════
-          BOTTOM HALF — soft lavender/white
-      ══════════════════════════════════════════════ */}
+      {/* ══ BOTTOM HALF ══ */}
       <div className="ls-bottom" style={{
         background: "linear-gradient(180deg, #EDE5FF 0%, #F5F0FF 60%, #FFFFFF 100%)",
         paddingTop: 260,
         paddingBottom: 80,
         position: "relative",
       }}>
-        {/* subtle grid */}
         <div style={{
           position: "absolute", inset: 0, pointerEvents: "none",
           backgroundImage: "linear-gradient(rgba(124,58,237,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(124,58,237,0.04) 1px, transparent 1px)",
           backgroundSize: "60px 60px",
         }} />
 
-        {/* bottom floating badges */}
         <div className="ls-badges" style={{ position: "relative", zIndex: 2, display: "flex", justifyContent: "center", gap: 16, flexWrap: "wrap", padding: "0 5%" }}>
           {[
-            { icon: Target,     label: "Meta Ads",    val: "ROAS 4.2x",  color: "#0082FB" },
-            { icon: Search,     label: "SEO",         val: "DR 42 ↑",    color: "#7C3AED" },
-            { icon: Mail,       label: "Email",       val: "42% Open",   color: "#10B981" },
-            { icon: BarChart2,  label: "GA4",         val: "12k Sessions",color: "#F59E0B"},
+            { icon: Target,    label: "Meta Ads",     val: "ROAS 4.2x",    color: "#0082FB" },
+            { icon: Search,    label: "SEO",          val: "DR 42 ↑",      color: "#7C3AED" },
+            { icon: Mail,      label: "Email",        val: "42% Open",     color: "#10B981" },
+            { icon: BarChart2, label: "GA4",          val: "12k Sessions", color: "#F59E0B" },
           ].map(({ icon: Icon, label, val, color }) => (
             <div className="ls-badge" key={label} style={{
               display: "flex", alignItems: "center", gap: 12,
@@ -154,12 +142,10 @@ export function LaptopShowcaseSection() {
         </div>
       </div>
 
-      {/* ══════════════════════════════════════════════
-          LAPTOP — absolutely centered, straddles split
-      ══════════════════════════════════════════════ */}
+      {/* ══ LAPTOP ══ */}
       <div className="ls-laptop" style={{
         position: "absolute",
-        top: "60%",
+        top: "50%",
         left: "50%",
         transform: "translate(-50%, -50%)",
         width: "min(1020px, 92vw)",
@@ -167,7 +153,6 @@ export function LaptopShowcaseSection() {
         filter: "drop-shadow(0 40px 80px rgba(26,11,53,0.45)) drop-shadow(0 8px 24px rgba(88,41,229,0.25))",
       }}>
 
-        {/* floating chip top-right */}
         <div className="ls-chip-top" style={{
           position: "absolute", top: -16, right: "8%", zIndex: 30,
           background: "white", borderRadius: 14, padding: "10px 18px",
@@ -182,7 +167,6 @@ export function LaptopShowcaseSection() {
           </div>
         </div>
 
-        {/* floating chip bottom-left */}
         <div className="ls-chip-btm" style={{
           position: "absolute", bottom: 56, left: "4%", zIndex: 30,
           background: "#1A0B35", borderRadius: 14, padding: "10px 18px",
@@ -194,12 +178,7 @@ export function LaptopShowcaseSection() {
           <div style={{ fontSize: 12, fontWeight: 800, color: "white" }}>Meta Campaign Live</div>
         </div>
 
-        {/* ── REALISTIC LAPTOP SVG ── */}
-        <svg
-          viewBox="0 0 900 580"
-          xmlns="http://www.w3.org/2000/svg"
-          style={{ width: "100%", display: "block" }}
-        >
+        <svg viewBox="0 0 900 580" xmlns="http://www.w3.org/2000/svg" style={{ width: "100%", display: "block" }}>
           <defs>
             <linearGradient id="lidTop" x1="0" y1="0" x2="0" y2="1">
               <stop offset="0%" stopColor="#2A2A2E" />
@@ -225,57 +204,29 @@ export function LaptopShowcaseSection() {
               <stop offset="0%" stopColor="#7C3AED" />
               <stop offset="100%" stopColor="#4C1D95" />
             </linearGradient>
-            <linearGradient id="barGrad2" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#60A5FA" />
-              <stop offset="100%" stopColor="#1D4ED8" />
-            </linearGradient>
-            <filter id="glow">
-              <feGaussianBlur stdDeviation="2" result="blur" />
-              <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-            </filter>
             <clipPath id="screenClip">
               <rect x="72" y="26" width="756" height="454" rx="6" />
             </clipPath>
           </defs>
 
-          {/* ── LID BACK (slight 3-D perspective top edge) ── */}
           <path d="M60 18 Q450 8 840 18 L830 26 Q450 16 70 26 Z" fill="#111113" />
-
-          {/* ── LID FACE ── */}
           <rect x="60" y="18" width="780" height="466" rx="10" fill="url(#lidTop)" />
-
-          {/* subtle lid sheen */}
           <rect x="60" y="18" width="780" height="80" rx="10" fill="rgba(255,255,255,0.03)" />
-
-          {/* ── LID LEFT EDGE ── */}
           <path d="M60 18 L50 26 L50 492 L60 484 Z" fill="url(#lidSide)" />
-          {/* ── LID RIGHT EDGE ── */}
           <path d="M840 18 L850 26 L850 492 L840 484 Z" fill="url(#lidSide)" />
-
-          {/* ── SCREEN BEZEL ── */}
           <rect x="68" y="22" width="764" height="462" rx="8" fill="#111113" />
-
-          {/* ── SCREEN SURFACE ── */}
           <rect x="72" y="26" width="756" height="454" rx="6" fill="url(#screenGrad)" />
 
-          {/* ══ SCREEN CONTENT ══════════════════════════════ */}
           <g clipPath="url(#screenClip)">
-
-            {/* Top bar */}
             <rect x="72" y="26" width="756" height="32" fill="#160935" />
-            {/* Traffic lights */}
             <circle cx="96"  cy="42" r="5.5" fill="#FF5F57" />
             <circle cx="114" cy="42" r="5.5" fill="#FFBD2E" />
             <circle cx="132" cy="42" r="5.5" fill="#28CA42" />
-            {/* URL bar */}
             <rect x="240" y="33" width="360" height="18" rx="9" fill="rgba(255,255,255,0.06)" />
             <text x="420" y="45.5" fill="rgba(255,255,255,0.35)" fontSize="9" textAnchor="middle" fontFamily="monospace">dashboard.treq.co/live-campaigns</text>
 
-            {/* ── SIDEBAR ── */}
             <rect x="72" y="58" width="80" height="422" fill="#0A0320" />
-            {/* logo mark */}
             <rect x="88" y="72" width="48" height="14" rx="4" fill="#5829E5" />
-            {/* nav items */}
             {[0,1,2,3,4,5].map(i => (
               <g key={i}>
                 <rect x="84" y={102 + i*52} width="48" height="36" rx="8"
@@ -285,18 +236,13 @@ export function LaptopShowcaseSection() {
               </g>
             ))}
 
-            {/* ── MAIN CONTENT AREA ── */}
-
-            {/* Page title */}
             <text x="168" y="80" fill="white" fontSize="13" fontWeight="bold" fontFamily="'DM Sans', sans-serif">Campaign Overview</text>
             <text x="168" y="93" fill="rgba(255,255,255,0.3)" fontSize="8" fontFamily="monospace">Last updated: just now · Auto-refreshing</text>
 
-            {/* ── METRIC CARDS ROW ── */}
             {metrics.map((m, i) => (
               <g key={m.label}>
                 <rect x={168 + i*147} y="104" width="133" height="68" rx="10"
                   fill="rgba(124,58,237,0.12)" stroke="rgba(124,58,237,0.25)" strokeWidth="0.8" />
-                {/* top accent line */}
                 <rect x={168 + i*147} y="104" width="133" height="3" rx="2" fill="#5829E5" opacity="0.7" />
                 <text x={178 + i*147} y="122" fill="rgba(255,255,255,0.4)" fontSize="8" fontFamily="monospace">{m.label}</text>
                 <text x={178 + i*147} y="147" fill="white" fontSize="18" fontWeight="bold" fontFamily="monospace">{m.value}</text>
@@ -304,14 +250,11 @@ export function LaptopShowcaseSection() {
               </g>
             ))}
 
-            {/* ── BAR CHART ── */}
             <rect x="168" y="184" width="330" height="160" rx="10" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.06)" strokeWidth="0.8" />
             <text x="180" y="201" fill="rgba(255,255,255,0.4)" fontSize="8" fontFamily="monospace">Conversions · Last 30 days</text>
-            {/* y-axis lines */}
             {[0,1,2,3].map(i => (
               <line key={i} x1="180" y1={316 - i*34} x2="488" y2={316 - i*34} stroke="rgba(255,255,255,0.04)" strokeWidth="0.8" />
             ))}
-            {/* bars */}
             {BARS.map((h, i) => {
               const barH = h * 1.05;
               return (
@@ -327,20 +270,14 @@ export function LaptopShowcaseSection() {
               );
             })}
 
-            {/* ── DONUT CHART ── */}
             <rect x="508" y="184" width="164" height="160" rx="10" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.06)" strokeWidth="0.8" />
             <text x="520" y="201" fill="rgba(255,255,255,0.4)" fontSize="8" fontFamily="monospace">Channel Mix</text>
-            {/* donut rings */}
             <circle cx="590" cy="280" r="42" fill="none" stroke="rgba(255,255,255,0.04)" strokeWidth="18" />
-            <circle cx="590" cy="280" r="42" fill="none" stroke="#7C3AED" strokeWidth="18"
-              strokeDasharray="88 176" strokeDashoffset="44" />
-            <circle cx="590" cy="280" r="42" fill="none" stroke="#60A5FA" strokeWidth="18"
-              strokeDasharray="52 176" strokeDashoffset="-44" />
-            <circle cx="590" cy="280" r="42" fill="none" stroke="#34D399" strokeWidth="18"
-              strokeDasharray="36 176" strokeDashoffset="-96" />
+            <circle cx="590" cy="280" r="42" fill="none" stroke="#7C3AED" strokeWidth="18" strokeDasharray="88 176" strokeDashoffset="44" />
+            <circle cx="590" cy="280" r="42" fill="none" stroke="#60A5FA" strokeWidth="18" strokeDasharray="52 176" strokeDashoffset="-44" />
+            <circle cx="590" cy="280" r="42" fill="none" stroke="#34D399" strokeWidth="18" strokeDasharray="36 176" strokeDashoffset="-96" />
             <text x="590" y="276" fill="white" fontSize="10" fontWeight="bold" textAnchor="middle" fontFamily="monospace">50%</text>
             <text x="590" y="287" fill="rgba(255,255,255,0.4)" fontSize="7" textAnchor="middle" fontFamily="monospace">Meta</text>
-            {/* legend */}
             {[["#7C3AED","Meta","50%"],["#60A5FA","Google","30%"],["#34D399","Email","20%"]].map(([c,l,v],i)=>(
               <g key={l}>
                 <rect x="520" y={300+i*13} width="8" height="8" rx="2" fill={c} />
@@ -348,15 +285,12 @@ export function LaptopShowcaseSection() {
               </g>
             ))}
 
-            {/* ── LIVE ACTIVITY FEED ── */}
             <rect x="168" y="354" width="504" height="96" rx="10" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.06)" strokeWidth="0.8" />
             <text x="180" y="371" fill="rgba(255,255,255,0.4)" fontSize="8" fontFamily="monospace">Live Activity Feed</text>
             <circle cx="516" cy="368" r="3" fill="#34D399">
               <animate attributeName="opacity" values="1;0.2;1" dur="1.2s" repeatCount="indefinite" />
             </circle>
             <text x="522" y="372" fill="#34D399" fontSize="7" fontFamily="monospace">LIVE</text>
-
-            {/* feed rows */}
             {FEED.slice(0, 4).map((item, i) => (
               <g key={i}>
                 <circle cx="184" cy={388 + i*16} r="3" fill={item.dot} />
@@ -365,36 +299,18 @@ export function LaptopShowcaseSection() {
                 </text>
               </g>
             ))}
-
-            {/* blinking cursor */}
             <rect x="656" y="434" width="2" height="10" rx="1" fill="#7C3AED">
               <animate attributeName="opacity" values="1;0;1" dur="0.9s" repeatCount="indefinite" />
             </rect>
-
-            {/* ── screen glare ── */}
-            <rect x="72" y="26" width="756" height="454" rx="6"
-              fill="url(#screenGrad)" opacity="0" />
-            {/* diagonal glare */}
             <path d="M72 26 L200 26 L72 120 Z" fill="rgba(255,255,255,0.015)" />
-
           </g>
-          {/* ══ END SCREEN CONTENT ══════════════════════════ */}
 
-          {/* ── CAMERA ── */}
           <circle cx="450" cy="22" r="3.5" fill="#0A0320" />
           <circle cx="450" cy="22" r="1.5" fill="#1a1a2e" />
-
-          {/* ── HINGE BAR ── */}
           <rect x="50" y="484" width="800" height="10" rx="3" fill="#111113" />
           <rect x="50" y="484" width="800" height="4" rx="2" fill="rgba(255,255,255,0.05)" />
-
-          {/* ── BASE TOP SURFACE ── */}
           <path d="M18 494 Q450 490 882 494 L900 520 Q450 516 0 520 Z" fill="url(#baseTop)" />
-
-          {/* trackpad */}
           <rect x="340" y="496" width="220" height="130" rx="10" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.08)" strokeWidth="0.8" />
-
-          {/* keyboard rows */}
           {[0,1,2,3].map(row => (
             Array.from({ length: row === 0 ? 13 : row === 3 ? 6 : 12 }).map((_, col) => (
               <rect
@@ -410,12 +326,8 @@ export function LaptopShowcaseSection() {
               />
             ))
           ))}
-
-          {/* ── BASE FRONT EDGE ── */}
           <path d="M0 520 Q450 516 900 520 L900 540 Q450 538 0 540 Z" fill="url(#baseFront)" />
           <path d="M0 540 Q450 538 900 540 L890 548 Q450 546 10 548 Z" fill="#0D0D10" />
-
-          {/* ── REFLECTION UNDER BASE ── */}
           <ellipse cx="450" cy="555" rx="380" ry="12" fill="rgba(88,41,229,0.12)" />
           <ellipse cx="450" cy="560" rx="300" ry="8" fill="rgba(0,0,0,0.2)" />
         </svg>
@@ -431,42 +343,30 @@ export function LaptopShowcaseSection() {
           50%      { transform: translateY(-9px) rotate(-1deg); }
         }
 
-        /* ── TABLET ≤ 900px ── */
         @media (max-width: 900px) {
           .ls-top    { padding-bottom: 220px !important; }
-          .ls-bottom { padding-top: 180px !important; }
+          .ls-bottom { padding-top: 200px !important; }
           .ls-laptop { width: min(820px, 94vw) !important; }
         }
 
-        /* ── MOBILE ≤ 640px ── */
         @media (max-width: 640px) {
-          .ls-top {
-            padding-top: 60px !important;
-            padding-bottom: 160px !important;
-          }
-          .ls-bottom {
-            padding-top: 120px !important;
-            padding-bottom: 48px !important;
-          }
+          .ls-top    { padding-top: 60px !important; padding-bottom: 160px !important; }
+          .ls-bottom { padding-top: 140px !important; padding-bottom: 48px !important; }
           .ls-title  { font-size: clamp(28px, 8vw, 44px) !important; }
           .ls-desc   { font-size: 14px !important; margin-bottom: 28px !important; }
           .ls-stats  { gap: 28px !important; }
           .ls-stat-num { font-size: 26px !important; }
-          .ls-laptop {
-            width: min(680px, 96vw) !important;
-            top: 55% !important;
-          }
-          .ls-chip-top  { display: none !important; }
-          .ls-chip-btm  { display: none !important; }
-          .ls-badges    { gap: 10px !important; }
-          .ls-badge     { padding: 10px 14px !important; }
+          .ls-laptop { width: min(680px, 96vw) !important; top: 50% !important; }
+          .ls-chip-top { display: none !important; }
+          .ls-chip-btm { display: none !important; }
+          .ls-badges { gap: 10px !important; }
+          .ls-badge  { padding: 10px 14px !important; }
         }
 
-        /* ── SMALL MOBILE ≤ 420px ── */
         @media (max-width: 420px) {
-          .ls-top    { padding-bottom: 130px !important; }
+          .ls-top    { padding-bottom: 120px !important; }
           .ls-bottom { padding-top: 100px !important; }
-          .ls-laptop { width: 98vw !important; top: 52% !important; }
+          .ls-laptop { width: 98vw !important; top: 48% !important; }
           .ls-stats  { gap: 20px !important; flex-wrap: wrap !important; justify-content: center !important; }
         }
       `}</style>

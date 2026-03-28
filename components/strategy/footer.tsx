@@ -1,6 +1,6 @@
 "use client";
 import React from 'react';
-import { Mail, Instagram, Linkedin, ArrowUpRight } from 'lucide-react';
+import { Mail, ArrowUpRight } from 'lucide-react';
 
 const TacFooter = () => {
   return (
@@ -10,16 +10,13 @@ const TacFooter = () => {
         {/* 1. Brand Section */}
         <div className="flex flex-col gap-4">
           <h2 className="text-3xl font-black tracking-tighter uppercase">
-            TAC<span className="text-purple-500 font-serif italic font-medium lowercase">.</span>
+            TREQO<span className="text-purple-500 font-serif italic font-medium lowercase">.</span>
           </h2>
           <p className="text-slate-500 text-xs uppercase tracking-[0.3em] leading-relaxed">
             The Art Code <br />
             Built for Execution.
           </p>
-          <div className="flex gap-4 mt-2">
-            <Instagram size={18} className="text-slate-500 hover:text-purple-400 cursor-pointer transition-colors" />
-            <Linkedin size={18} className="text-slate-500 hover:text-purple-400 cursor-pointer transition-colors" />
-          </div>
+
         </div>
 
         {/* 2. Contact Section */}
