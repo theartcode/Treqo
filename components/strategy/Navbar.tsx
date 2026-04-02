@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-
+import Image from "next/image";
 const navItems = [
   { label: "Home",       id: "hero" },
   { label: "Why Treqo", id: "why-treqo" },
@@ -152,16 +152,18 @@ export default function Navbar() {
           <div style={scrolledWrapperStyle}>
 
             {/* LOGO */}
-            <span
-              onClick={() => scrollTo("hero")}
-              style={{
-                fontSize: "18px", fontWeight: 900, color: "#5829E5",
-                letterSpacing: "-0.02em", cursor: "pointer", flexShrink: 0,
-                fontFamily: "'Segoe UI', system-ui, sans-serif",
-              }}
-            >
-              Treqo
-            </span>
+            <div
+  onClick={() => scrollTo("hero")}
+  style={{ cursor: "pointer", display: "flex", alignItems: "center" }}
+>
+  <Image
+    src="../public/treswo-logo.png"
+    alt="Treqo Logo"
+    width={120}
+    height={40}
+    priority
+  />
+</div>
 
             {/* NAV */}
             <NavLinks fontSize="11px" gap={28} />
@@ -178,16 +180,18 @@ export default function Navbar() {
           <div style={topWrapperStyle}>
 
             {/* LOGO */}
-            <span
-              onClick={() => scrollTo("hero")}
-              style={{
-                fontSize: "22px", fontWeight: 900, color: "#5829E5",
-                letterSpacing: "-0.02em", cursor: "pointer", flexShrink: 0,
-                fontFamily: "'Segoe UI', system-ui, sans-serif",
-              }}
-            >
-              Treqo
-            </span>
+           <div
+  onClick={() => scrollTo("hero")}
+  style={{ cursor: "pointer", display: "flex", alignItems: "center" }}
+>
+  <Image
+    src="/treswo-logo.png"
+    alt="Treqo Logo"
+    width={120}
+    height={40}
+    priority
+  />
+</div>
 
             {/* NAV — absolutely centered */}
             <div
