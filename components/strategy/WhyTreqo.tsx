@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 
 const placements = [
   { name: "Dikshtha", company: "BRISTLE TECH", initials: "DK", color: "#F472B6" },
-  { name: "Harish", company: "TCS", initials: "HA", color: "#34A853" },
+  { name: "Harshit", company: "TCS", initials: "HA", color: "#34A853" },
   { name: "Subhani", company: "JASS MEDIA FOUNDER", initials: "SU", color: "#60A5FA" },
   { name: "Somu Shekar", company: "JASS MEDIA Co-Founder & THE GESTURE", initials: "SS", color: "#FBBF24" },
   { name: "Mounika Grace", company: "BRAND FLIX", initials: "MG", color: "#A78BFA" },
