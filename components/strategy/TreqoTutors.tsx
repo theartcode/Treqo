@@ -72,48 +72,43 @@ const tutorData = [
   company: "TAC",
   linkedin: "https://www.linkedin.com/in/vali-sayyad-895402160",
 },
-
-  {
-    id: 3,
-    name: "Durga Sai Vasagiri",
-    role: "AI in Marketing",
-    experience: "Co-Founder",
-    details: "Focuses on AI-driven marketing strategies and automation.",
-    image: "/tutors/tutor3.jpg",
-    company: "TAC",
-    linkedin: "https://www.linkedin.com/in/durgasaiv",
-  },
-
-  // 🔥 NEW ADDITIONS
+{
+  id: 3,
+  name: "Durga Sai Vasagiri",
+  role: "Multimedia",
+  experience: "Co-Founder",
+  details:
+    "Specializes in multimedia production and AI-powered content creation. Focuses on video editing, creative assets, and automation tools for scalable content workflows.",
+  image: "/tutors/tutor3.jpg",
+  company: "TAC",
+  linkedin: "https://www.linkedin.com/in/durgasaiv",
+},
 
 {
   id: 4,
   name: "Arun Babu",
-  role: "Performance Marketing & Trading",
-  experience: "CA | ₹1.6Cr+ Ad Spend",
+  role: "Multimedia",
+  experience: "CA & CFA Level 3 | ₹1.6Cr+ Ad Spend",
   details:
-    "Content creator and performance marketer who has spent over ₹1.6Cr on Meta Ads. Successfully runs Mindfluential Trading & Arun Bahu pages. Specializes in simplifying investing, trading, and personal finance.",
+    "Content creator with strong expertise in multimedia production, branding visuals, and storytelling. Also experienced in performance marketing and trading education through Mindfluential platforms.",
   image: "/tutors/arun.jpg",
   company: "Mindfluential Trading",
 
-  // ❌ remove linkedin misuse
   linkedin: "#",
 
-  // ✅ NEW FIELD
   instagram: [
     "https://www.instagram.com/arunbau_telugu/",
     "https://www.instagram.com/arunbau/",
     "https://www.instagram.com/mindfluential_trading/",
   ],
 },
-
   {
   id: 5,
   name: "Sajjeed Khan",
   role: "Paid Media & Growth",
-  experience: "12+ Years Experience", // ✅ fixed
+  experience: "9 Years Experience", // ✅ fixed
   details:
-    "Paid media expert with 12+ years of experience. Specialized in Google Ads, Meta Ads, Taboola, Outbrain, Native advertising, and PPC campaigns.",
+    "Paid media expert with 9 years of experience. Specialized in Google Ads, Meta Ads, Taboola, Outbrain, Native advertising, and PPC campaigns.",
   image: "/tutors/sajjeed.jpg",
   company: "TAC",
   linkedin: "https://www.linkedin.com/in/sajeedkhan/",

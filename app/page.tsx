@@ -52,7 +52,7 @@ export default function Home() {
 
       <div id="tools">
         <TermToolsPage />
-        <TrustedBySlider />
+        {/* <TrustedBySlider /> */}
         <Tools />
         <ToolStackSection />
       </div>

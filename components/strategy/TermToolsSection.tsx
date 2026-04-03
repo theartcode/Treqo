@@ -244,36 +244,13 @@ export default function TermToolsPage() {
     }}>
 
       {/* GRID BACKGROUND */}
-  {/* Glow Background */}
-<div style={{
-  position: "absolute",
-  top: "-20%",
-  left: "-10%",
-  width: "600px",
-  height: "600px",
-  background: "radial-gradient(circle, rgba(96,165,250,0.25), transparent 70%)",
-  filter: "blur(100px)",
-  zIndex: 0,
-}} />
-
-<div style={{
-  position: "absolute",
-  bottom: "-20%",
-  right: "-10%",
-  width: "600px",
-  height: "600px",
-  background: "radial-gradient(circle, rgba(124,58,237,0.25), transparent 70%)",
-  filter: "blur(120px)",
-  zIndex: 0,
-}} />
-  
-      {/* <div style={{ position: "absolute", inset: 0, pointerEvents: "none", zIndex: 0, opacity: 0.1 }}>
+      <div style={{ position: "absolute", inset: 0, pointerEvents: "none", zIndex: 0, opacity: 0.1 }}>
         <div style={{
           position: "absolute", inset: 0,
           backgroundImage: `linear-gradient(to right, rgba(255,255,255,0.2) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.2) 1px, transparent 1px)`,
           backgroundSize: "80px 80px",
         }} />
-      </div> */}
+      </div>
 
       <div className="tts-inner" style={{
         position: "relative", zIndex: 10,
@@ -315,26 +292,32 @@ export default function TermToolsPage() {
         </div>
 
         {/* MAIN LAYOUT — fills all remaining height */}
-        <div className="tts-grid" style={{
-          display: "grid",
-          gridTemplateColumns: "340px 1fr",
-          borderRadius: "36px",
-          border: "1px solid rgba(255,255,255,0.1)",
-          background: "linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02))",
-          backdropFilter: "blur(20px)",
-          boxShadow: "0 40px 100px rgba(0,0,0,0.4)",
-          flex: 1,
-          minHeight: 0,
-          overflow: "hidden",
-        }}>
+       <div className="tts-grid" style={{
+  display: "grid",
+  gridTemplateColumns: "340px 1fr",
+  borderRadius: "36px",
+  border: "1px solid rgba(255,255,255,0.1)",
+  background: "rgba(255,255,255,0.03)",
+  backdropFilter: "blur(20px)",
+
+  // ✅ ADDED GLOW BORDER
+  boxShadow: `
+    0 40px 100px rgba(0,0,0,0.4),
+    0 0 0 1px rgba(96,165,250,0.3),
+    0 0 25px rgba(96,165,250,0.35),
+    0 0 60px rgba(96,165,250,0.25)
+  `,
+
+  flex: 1,
+  minHeight: 0,
+  overflow: "hidden",
+}}>
 
           {/* ── LEFT PANEL ── */}
           <div className="tts-left" style={{
+            background: "rgb(0 0 0 / 43%)",
             borderRight: "1px solid rgba(255,255,255,0.05)",
             display: "flex", flexDirection: "column", minHeight: 0,
-            background: "linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01))",
-backdropFilter: "blur(12px)",
-boxShadow: "inset -1px 0 0 rgba(255,255,255,0.06)",
           }}>
 
             {/* Panel header */}
@@ -351,7 +334,7 @@ boxShadow: "inset -1px 0 0 rgba(255,255,255,0.06)",
               {/* Bottom fade hint */}
               <div style={{
                 position: "absolute", bottom: 0, left: 0, right: 0, height: "48px",
-                background: "linear-gradient(to top, rgba(11,35,63,0.9), transparent)",
+                background: "linear-gradient(to top, rgb(11 24 40), transparent)",
                 pointerEvents: "none", zIndex: 2, borderRadius: "0 0 0 0",
               }} />
               <div className="tts-tabs" style={{

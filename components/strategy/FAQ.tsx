@@ -108,7 +108,7 @@ export default function FAQSection() {
 
         {/* MAIN LAYOUT — fixed height container, this NEVER changes */}
         <div style={{
-          height: "560px",           // ← THE KEY: fixed height on outer wrapper
+          height: "auto",           // ← THE KEY: fixed height on outer wrapper
           overflow: "hidden",        // ← clips everything inside
           display: "grid",
           gridTemplateColumns: "220px 1fr",
@@ -148,7 +148,7 @@ export default function FAQSection() {
 
           {/* RIGHT PANEL — scrolls inside, never pushes layout */}
           <div style={{
-            height: "560px",         // ← same fixed height
+            height: "auto",         // ← same fixed height
             overflowY: "auto",
             overflowX: "hidden",
             position: "relative",

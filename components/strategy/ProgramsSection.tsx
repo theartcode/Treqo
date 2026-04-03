@@ -108,11 +108,69 @@ export function ProgramsSection() {
 
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedProgram, setSelectedProgram] = useState("");
+const [notifyOpen, setNotifyOpen] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+const [loading, setLoading] = useState(false);
 
+
+const [form, setForm] = useState({
+  name: "",
+  age: "",
+  email: "",
+  phone: "",
+  qualification: "",
+  city: ""
+});
   const openDemo = (programName: string) => {
     setSelectedProgram(programName);
     setModalOpen(true);
   };
+
+  const handleChange = (e: any) => {
+  setForm({ ...form, [e.target.name]: e.target.value });
+};
+
+const handleSubmit = async () => {
+  if (!form.name || !form.email || !form.phone) return;
+
+  setLoading(true);
+
+  try {
+    await fetch("https://n8n.srv993899.hstgr.cloud/webhook/treqo-form", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        ...form,
+        program: selectedProgram,
+        source: "program-card",
+        timestamp: new Date().toISOString()
+      })
+    });
+
+    setSubmitted(true);
+  } catch (err) {
+    alert("Something went wrong");
+  }
+
+  setLoading(false);
+};
+
+const handleClose = () => {
+  setModalOpen(false);
+  setTimeout(() => {
+    setSubmitted(false);
+    setForm({
+      name: "",
+      age: "",
+      email: "",
+      phone: "",
+      qualification: "",
+      city: ""
+    });
+  }, 300);
+};
 
   // Touch swipe handlers — pause auto-slide on touch
   const handleTouchStart = (e: React.TouchEvent) => {
@@ -130,6 +188,16 @@ export function ProgramsSection() {
     setTimeout(() => { isPaused.current = false; }, 5000);
   };
 
+  const inputStyle = {
+  width: "100%",
+  padding: "12px 14px",
+  borderRadius: 10,
+  border: "1px solid rgba(88,41,229,0.2)",
+  fontSize: 14,
+  outline: "none",
+  color: "#1A0B35",
+  background: "#FAFAFF"
+};
   return (
     <>
       <style>{`
@@ -230,7 +298,7 @@ export function ProgramsSection() {
                 transition: 'transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)',
                 transform: `translateX(calc(-${startIndex} * (100% / ${visibleCount} + ${gap / visibleCount}px)))`,
               }}>
-                {programs.map(p => (
+                {programs.map((p, index) => (
                   <div
                     className="ps-card"
                     key={p.id}
@@ -322,17 +390,33 @@ export function ProgramsSection() {
                           <span style={{ fontSize: 22, fontWeight: 900, color: '#1A0B35' }}>{p.duration}</span>
                         </div>
                         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.2fr', gap: 10 }}>
-                          <button
-                            style={{
-                              background: 'transparent', border: '1.5px solid #1A0B35',
-                              borderRadius: 12, padding: '13px 0',
-                              fontSize: 11, fontWeight: 800, color: '#1A0B35',
-                              cursor: 'default', display: 'flex', alignItems: 'center',
-                              justifyContent: 'center', gap: 6, letterSpacing: '0.05em',
-                            }}
-                          >
-                            BOOK A DEMO
-                          </button>
+                       <button
+onClick={() => {
+  if (index === 0) {
+    openDemo(p.name); // ✅ only 1st card form
+  } else {
+    setSelectedProgram(p.name);
+    setNotifyOpen(true); // ✅ all others popup
+  }
+}}
+  style={{
+    background: 'transparent',
+    border: '1.5px solid #1A0B35',
+    borderRadius: 12,
+    padding: '13px 0',
+    fontSize: 11,
+    fontWeight: 800,
+    color: '#1A0B35',
+    cursor: p.comingSoon ? 'not-allowed' : 'pointer',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 6,
+    letterSpacing: '0.05em',
+  }}
+>
+  BOOK A DEMO
+</button>
                           <div style={{
                             background: '#1A0B35', borderRadius: 12, padding: '13px 0',
                             fontSize: 11, fontWeight: 800, color: 'white',
@@ -371,7 +455,208 @@ export function ProgramsSection() {
 
           </div>
         </div>
+
+        {modalOpen && (
+  <div
+    style={{
+      position: "fixed",
+      inset: 0,
+      background: "rgba(10,4,30,0.65)",
+      backdropFilter: "blur(6px)",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      zIndex: 999
+    }}
+    onClick={(e) => e.target === e.currentTarget && handleClose()}
+  >
+    <div
+      style={{
+        background: "white",
+        borderRadius: 24,
+        padding: 30,
+        width: "100%",
+        maxWidth: 480,
+        boxShadow: "0 20px 60px rgba(0,0,0,0.15)"
+      }}
+    >
+      {!submitted ? (
+        <>
+          {/* HEADER */}
+          <h2 style={{
+            fontWeight: 900,
+            fontSize: 22,
+            color: "#1A0B35",
+            marginBottom: 6
+          }}>
+            Apply Now
+          </h2>
+
+          <p style={{
+            fontSize: 13,
+            color: "#6B7280",
+            marginBottom: 20
+          }}>
+            {selectedProgram}
+          </p>
+
+          {/* FORM */}
+          <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+
+            <input
+              name="name"
+              placeholder="Full Name"
+              value={form.name}
+              onChange={handleChange}
+              style={inputStyle}
+            />
+
+            <input
+              name="age"
+              placeholder="Age"
+              value={form.age}
+              onChange={handleChange}
+              style={inputStyle}
+            />
+
+            <input
+              name="email"
+              placeholder="Email Address"
+              value={form.email}
+              onChange={handleChange}
+              style={inputStyle}
+            />
+
+            <input
+              name="phone"
+              placeholder="Phone Number"
+              value={form.phone}
+              onChange={handleChange}
+              style={inputStyle}
+            />
+
+            <select
+              name="qualification"
+              value={form.qualification}
+              onChange={handleChange}
+              style={inputStyle}
+            >
+              <option value="">Select Qualification</option>
+              <option value="BBA">BBA</option>
+              <option value="MBA">MBA</option>
+              <option value="B.Tech">B.Tech</option>
+              <option value="B.Com">B.Com</option>
+              <option value="Other">Other</option>
+            </select>
+
+            <input
+              name="city"
+              placeholder="City"
+              value={form.city}
+              onChange={handleChange}
+              style={inputStyle}
+            />
+
+            {/* SUBMIT */}
+            <button
+              onClick={handleSubmit}
+              disabled={loading}
+              style={{
+                width: "100%",
+                padding: 14,
+                background: "linear-gradient(135deg, #5829E5, #311882)",
+                color: "white",
+                borderRadius: 12,
+                fontWeight: 800,
+                border: "none",
+                cursor: "pointer",
+                marginTop: 6
+              }}
+            >
+              {loading ? "Submitting..." : "SUBMIT APPLICATION"}
+            </button>
+
+          </div>
+        </>
+      ) : (
+        <div style={{ textAlign: "center", padding: 20 }}>
+          <h2 style={{ color: "#1A0B35" }}>You're In 🚀</h2>
+          <p style={{ color: "#6B7280" }}>We’ll contact you soon.</p>
+
+          <button
+            onClick={handleClose}
+            style={{
+              marginTop: 20,
+              padding: 12,
+              background: "#1A0B35",
+              color: "white",
+              borderRadius: 10,
+              border: "none",
+              cursor: "pointer"
+            }}
+          >
+            Close
+          </button>
+        </div>
+      )}
+    </div>
+  </div>
+)}
+
+
+{notifyOpen && (
+  <div
+    style={{
+      position: "fixed",
+      inset: 0,
+      background: "rgba(10,4,30,0.65)",
+      backdropFilter: "blur(6px)",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      zIndex: 999
+    }}
+    onClick={(e) => e.target === e.currentTarget && setNotifyOpen(false)}
+  >
+    <div
+      style={{
+        background: "white",
+        borderRadius: 20,
+        padding: 30,
+        width: "100%",
+        maxWidth: 360,
+        textAlign: "center"
+      }}
+    >
+      <h2 style={{ fontWeight: 900, color: "#1A0B35" }}>
+        Coming Soon 🚀
+      </h2>
+
+      <p style={{ color: "#6B7280", marginTop: 10 }}>
+        We’ll update you once this program is live.
+      </p>
+
+      <button
+        onClick={() => setNotifyOpen(false)}
+        style={{
+          marginTop: 20,
+          padding: 12,
+          width: "100%",
+          background: "#1A0B35",
+          color: "white",
+          borderRadius: 10,
+          border: "none",
+          cursor: "pointer"
+        }}
+      >
+        OK
+      </button>
+    </div>
+  </div>
+)}
       </section>
     </>
+
+
   );
 }

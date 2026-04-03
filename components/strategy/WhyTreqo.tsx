@@ -89,7 +89,7 @@ export default function PortfolioProof() {
             style={{
               gridRow: '1 / 3',
               gridColumn: '1',
-              background: hovered === 1 ? '#471ecb' : '#1A0B35',
+              background: hovered === 1 ? '#1A0B35' : '#1A0B35',
               borderRadius: '26px', padding: '22px',
               display: 'flex', flexDirection: 'column', justifyContent: 'space-between',
               transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
@@ -176,9 +176,9 @@ export default function PortfolioProof() {
                 })}
               </div>
 
-              <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', background: 'rgba(255,255,255,0.15)', borderRadius: '10px', padding: '8px 14px', alignSelf: 'flex-start', fontSize: '10px', fontWeight: 800, color: 'white', letterSpacing: '0.08em', textTransform: 'uppercase' }}>
+              {/* <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', background: 'rgba(255,255,255,0.15)', borderRadius: '10px', padding: '8px 14px', alignSelf: 'flex-start', fontSize: '10px', fontWeight: 800, color: 'white', letterSpacing: '0.08em', textTransform: 'uppercase' }}>
                 BROCHURE_DOWNLOAD.PDF <Download size={12} />
-              </div>
+              </div> */}
             </div>
           </div>
 
