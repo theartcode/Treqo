@@ -60,6 +60,7 @@ const advantages = [
   }
 ];
 
+
 export default function TacAdvantage() {
   return (
     <section className="py-24 px-[5%] bg-[#0F0A1F] text-white overflow-hidden relative font-sans">

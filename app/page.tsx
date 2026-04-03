@@ -13,11 +13,14 @@ import { ToolStackSection } from "@/components/strategy/ExecutionSection";
 
 import Design2 from "@/components/strategy/Design2";
 
+
 import Tools from "@/components/strategy/Tools";
 
 import FAQSection from "@/components/strategy/FAQ";
 import TacFooterLight from "@/components/strategy/footer";
 import { LaptopShowcaseSection } from "@/components/strategy/laptop";
+import TutorExperience from "@/components/strategy/TreqoTutors";
+import { Selectionprocess } from "@/components/strategy/selectionprocess";
 
 export default function Home() {
   return (
@@ -28,11 +31,16 @@ export default function Home() {
         <HeroSection />
       </div>
 
-      <div id="why-treqo">
-        <WhyTreqo />
-      </div>
+<div id="why-treqo">
+  <WhyTreqo />
+</div>
 
-      <div id="programs">
+
+<Selectionprocess/>
+
+<TutorExperience />
+
+<div id="programs">
         <ProgramsSection />
       </div>
 

@@ -18,7 +18,7 @@ const tutorData = [
   },
   {
     id: 2,
-    name: "Valli Sayyad",
+    name: "Vali Sayyad",
     role: "Digital Marketing",
     experience: "7 Years",
     details: "Chief Growth Officer at TAC. Expert in performance marketing and scaling brands.",
@@ -48,7 +48,7 @@ const tutorData = [
   })),
 ];
 
-export default function TutorExperience() {
+export default function TutorExperience() {0
   const [activeId, setActiveId] = useState(1);
 
   return (

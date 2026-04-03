@@ -4,38 +4,77 @@ import { useState } from "react";
 import { ArrowRight, Play, Clock, MapPin, Users, Zap, BookOpen, UserCheck, BarChart2, Briefcase, Trophy, X } from "lucide-react";
 
 // ── REPLACE THIS WITH YOUR GOOGLE APPS SCRIPT WEB APP URL ──
-const GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbwo2YANqQCCM5-a-HSRLPDx4pkGQVGVEcOuBkJ7bjJX05eg_mQ9f5AdPlcUOl8IdYea/exec";
+const N8N_WEBHOOK_URL = "https://n8n.srv993899.hstgr.cloud/webhook/treqo-form";
 // ────────────────────────────────────────────────────────────
 
 export default function HeroSection() {
   const [modalOpen, setModalOpen] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [form, setForm] = useState({ name: "", age: "", email: "", phone: "" });
+  const [form, setForm] = useState({
+  name: "",
+  age: "",
+  email: "",
+  phone: "",
+  qualification: "",
+  city: ""
+});
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
+
   const handleSubmit = async () => {
-    if (!form.name || !form.age || !form.email || !form.phone) return;
-    setLoading(true);
-    const [_, __] = await Promise.all([
-      fetch(GOOGLE_SHEET_URL, {
-        method: "POST",
-        mode: "no-cors",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...form, timestamp: new Date().toISOString() }),
-      }).catch(() => {}),
-      new Promise(res => setTimeout(res, 1800)),
-    ]);
-    setLoading(false);
+  if (
+    !form.name ||
+    !form.age ||
+    !form.email ||
+    !form.phone ||
+    !form.qualification ||
+    !form.city
+  ) return;
+
+  setLoading(true);
+
+  try {
+    const res = await fetch(N8N_WEBHOOK_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name: form.name,
+        email: form.email,
+        phone: form.phone,
+        age: form.age,
+        qualification: form.qualification,
+        city: form.city,
+        timestamp: new Date().toISOString(),
+      }),
+    });
+
+    if (!res.ok) throw new Error("Failed");
+
+    console.log("✅ Lead submitted");
     setSubmitted(true);
-  };
+
+  } catch (err) {
+    console.log("❌ Submission failed", err);
+    alert("Something went wrong. Try again.");
+  }
+
+  setLoading(false);
+};
 
   const handleClose = () => {
     setModalOpen(false);
-    setTimeout(() => { setSubmitted(false); setForm({ name: "", age: "", email: "", phone: "" }); }, 300);
+    setTimeout(() => { setSubmitted(false);setForm({
+  name: "",
+  age: "",
+  email: "",
+  phone: "",
+  qualification: "",
+  city: ""
+});; }, 300);
   };
 
   return (
@@ -60,6 +99,17 @@ export default function HeroSection() {
           align-items: center;
           gap: 64px;
         }
+          .form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+@media (max-width: 600px) {
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+}
         .hero-right {
           display: flex;
           justify-content: center;
@@ -110,6 +160,7 @@ export default function HeroSection() {
           position: relative; box-shadow: 0 40px 100px rgba(88,41,229,0.18);
           border: 1px solid rgba(88,41,229,0.1);
           animation: slideUp 0.25s ease;
+           max-width: 620px;
         }
         .modal-close {
           position: absolute; top: 18px; right: 18px;
@@ -193,6 +244,11 @@ export default function HeroSection() {
       `}</style>
 
       {/* ── MODAL ── */}
+
+
+
+
+
       {modalOpen && (
         <div className="modal-overlay" onClick={(e) => e.target === e.currentTarget && handleClose()}>
           <div className="modal-card">
@@ -232,19 +288,75 @@ export default function HeroSection() {
                     <label className="form-label">Age</label>
                     <input className="form-input" name="age" type="number" value={form.age} onChange={handleChange} placeholder="e.g. 22" min="16" max="60" />
                   </div>
-                  <div>
-                    <label className="form-label">Email Address</label>
-                    <input className="form-input" name="email" type="email" value={form.email} onChange={handleChange} placeholder="you@example.com" />
-                  </div>
-                  <div>
-                    <label className="form-label">Phone Number</label>
-                    <input className="form-input" name="phone" type="tel" value={form.phone} onChange={handleChange} placeholder="+91 98765 43210" />
-                  </div>
+                 <div className="form-row">
 
+  <div>
+    <label className="form-label">Email Address</label>
+    <input
+      className="form-input"
+      name="email"
+      type="email"
+      value={form.email}
+      onChange={handleChange}
+      placeholder="you@example.com"
+    />
+  </div>
+
+  <div>
+    <label className="form-label">Phone Number</label>
+    <input
+      className="form-input"
+      name="phone"
+      type="tel"
+      value={form.phone}
+      onChange={handleChange}
+      placeholder="+91 98765 43210"
+    />
+  </div>
+
+</div>
+
+{/* Qualification */}
+<div>
+  <label className="form-label">Qualification</label>
+  <select
+    className="form-input"
+    name="qualification"
+    value={form.qualification}
+    onChange={handleChange}
+  >
+    <option value="">Select Qualification</option>
+    <option value="BBA">BBA</option>
+    <option value="MBA">MBA</option>
+    <option value="B.Tech">B.Tech</option>
+    <option value="B.Com">B.Com</option>
+    <option value="Other">Other</option>
+  </select>
+</div>
+
+{/* City */}
+<div>
+  <label className="form-label">City</label>
+  <input
+    className="form-input"
+    name="city"
+    value={form.city}
+    onChange={handleChange}
+    placeholder="e.g. Hyderabad"
+  />
+</div>
                   <button
                     className="submit-btn"
                     onClick={handleSubmit}
-                    disabled={loading || !form.name || !form.age || !form.email || !form.phone}
+                    disabled={
+  loading ||
+  !form.name ||
+  !form.age ||
+  !form.email ||
+  !form.phone ||
+  !form.qualification ||
+  !form.city
+}
                   >
                     {loading ? <><div className="spinner" /><span>Submitting…</span></> : <><span>SUBMIT APPLICATION</span> <ArrowRight size={15} /></>}
                   </button>
@@ -363,7 +475,7 @@ export default function HeroSection() {
                   APPLY NOW <ArrowRight size={16} />
                 </button>
                 <span style={{ fontSize: '12px', color: '#9CA3AF', fontWeight: 500 }}>
-                  Next cohort starts <strong style={{ color: '#5829E5' }}>April 2025</strong>
+                  Next cohort starts <strong style={{ color: '#5829E5' }}>April 2026</strong>
                 </span>
               </div>
 

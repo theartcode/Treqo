@@ -157,7 +157,7 @@ export default function Navbar() {
   style={{ cursor: "pointer", display: "flex", alignItems: "center" }}
 >
   <Image
-    src="../public/treswo-logo.png"
+    src="/treswo-logo.png"
     alt="Treqo Logo"
     width={120}
     height={40}

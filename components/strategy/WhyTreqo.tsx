@@ -4,14 +4,14 @@ import { Download, TrendingUp, BarChart3, Megaphone, Zap, ArrowUpRight, Sparkles
 import { useState, useEffect } from "react";
 
 const placements = [
-  { name: "Aman Gupta", company: "Meta", initials: "AG", color: "#1877F2" },
-  { name: "Sanya Iyer", company: "Google", initials: "SI", color: "#34A853" },
-  { name: "Rohan Shah", company: "Microsoft", initials: "RS", color: "#00A4EF" },
-  { name: "Vikram R.", company: "Amazon", initials: "VR", color: "#FF9900" },
-  { name: "Priya K.", company: "Netflix", initials: "PK", color: "#E50914" },
-  { name: "Karan J.", company: "Apple", initials: "KJ", color: "#555555" },
-  { name: "Neha M.", company: "Flipkart", initials: "NM", color: "#2874F0" },
-  { name: "Dev S.", company: "Zomato", initials: "DS", color: "#E23744" },
+  { name: "Dikshtha", company: "BRISTLE TECH", initials: "DK", color: "#F472B6" },
+  { name: "Harish", company: "TCS", initials: "HA", color: "#34A853" },
+  { name: "Subhani", company: "JASS MEDIA FOUNDER", initials: "SU", color: "#60A5FA" },
+  { name: "Somu Shekar", company: "JASS MEDIA Co-Founder & THE GESTURE", initials: "SS", color: "#FBBF24" },
+  { name: "Mounika Grace", company: "BRAND FLIX", initials: "MG", color: "#A78BFA" },
+  { name: "Jyothika", company: "DIGITAL MARKEter", initials: "JY", color: "#10B981" },
+  { name: "Pravalika", company: "BRANDFLIX", initials: "PR", color: "#FB7185" },
+  { name: "Rohith", company: "FREELANCER", initials: "RO", color: "#94A3B8" },
 ];
 
 const FLOW_STEPS = ['Ideate', 'Scale', 'Build', 'Create'];
