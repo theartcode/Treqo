@@ -3,17 +3,17 @@
 import { Sparkles } from "lucide-react";
 
 const logos = [
-  { name: "FedEx", src: "/logo/Fedex.jpeg" },
-  { name: "Flipkart", src: "/logo/Flipkart.jpeg" },
-  { name: "Google", src: "/logo/Google.jpeg" },
-  { name: "Netflix", src: "/logo/Netflix.jpeg" },
-  { name: "LinkedIn", src: "/logo/LinkdIn.jpeg" },
-  { name: "Adobe Illustrator", src: "/logo/Ai.jpeg" },
-  { name: "UPI", src: "/logo/UPI.jpeg" },
-  { name: "Canva", src: "/logo/Canva.jpeg" },
-  { name: "Nescafe", src: "/logo/Nescafe.jpeg" },
-  { name: "Google Pay", src: "/logo/Gpay.jpeg" },
-  { name: "eBay", src: "/logo/eBay.jpeg" },
+  { name: "FedEx", src: "/Logo/Fedex.jpeg" },
+  { name: "Flipkart", src: "/Logo/Flipkart.jpeg" },
+  { name: "Google", src: "/Logo/Google.jpeg" },
+  { name: "Netflix", src: "/Logo/Netflix.jpeg" },
+  { name: "LinkedIn", src: "/Logo/LinkdIn.jpeg" },
+  { name: "Adobe Illustrator", src: "/Logo/Ai.jpeg" },
+  { name: "UPI", src: "/Logo/UPI.jpeg" },
+  { name: "Canva", src: "/Logo/Canva.jpeg" },
+  { name: "Nescafe", src: "/Logo/Nescafe.jpeg" },
+  { name: "Google Pay", src: "/Logo/Gpay.jpeg" },
+  { name: "eBay", src: "/Logo/eBay.jpeg" },
 ];
 
 export function TrustedBySlider() {
