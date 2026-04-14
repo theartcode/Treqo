@@ -1,3 +1,28 @@
+"use client";
+
+import { useEffect } from "react";
+
+import { initPixel, trackLead } from "@/lib/metaPixel";
+
+export const submitLead = async () => {
+  const eventId = crypto.randomUUID();
+
+  // Browser Pixel
+  trackLead(eventId);
+
+  // Server CAPI
+  await fetch("/api/meta-event", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      event_name: "Lead",
+      event_id: eventId,
+      url: window.location.href
+    })
+  });
+};
 import Navbar from "@/components/strategy/Navbar";
 import HeroSection from "@/components/strategy/HeroSection";
 import WhyTreqo from "@/components/strategy/WhyTreqo";
@@ -23,6 +48,9 @@ import TutorExperience from "@/components/strategy/TreqoTutors";
 import { Selectionprocess } from "@/components/strategy/selectionprocess";
 
 export default function Home() {
+  useEffect(() => {
+initPixel();
+  }, []);
   return (
     <>
       <Navbar />
