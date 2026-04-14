@@ -49,7 +49,7 @@ import { Selectionprocess } from "@/components/strategy/selectionprocess";
 
 export default function Home() {
   useEffect(() => {
-initPixel();
+    initPixel();
   }, []);
   return (
     <>
