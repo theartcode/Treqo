@@ -28,11 +28,8 @@ import HeroSection from "@/components/strategy/HeroSection";
 import WhyTreqo from "@/components/strategy/WhyTreqo";
 
 import { ProgramsSection } from "@/components/strategy/ProgramsSection";
-import { FrameworkSection } from "@/components/strategy/FrameworkSection";
 import { TrustedBySlider } from "@/components/strategy/TrustedBySlider";
 
-import TacExecutionPipeline from "@/components/strategy/TreqoTutors";
-import TermToolsPage from "@/components/strategy/TermToolsSection";
 
 import { ToolStackSection } from "@/components/strategy/ExecutionSection";
 
@@ -44,8 +41,7 @@ import Tools from "@/components/strategy/Tools";
 import FAQSection from "@/components/strategy/FAQ";
 import TacFooterLight from "@/components/strategy/footer";
 import { LaptopShowcaseSection } from "@/components/strategy/laptop";
-import TutorExperience from "@/components/strategy/TreqoTutors";
-import { Selectionprocess } from "@/components/strategy/selectionprocess";
+import StrategyTabs from "@/components/strategy/StrategyTabs";
 
 export default function Home() {
   useEffect(() => {
@@ -64,22 +60,18 @@ export default function Home() {
 </div>
 
 
-<Selectionprocess/>
-
-<TutorExperience />
+<StrategyTabs />
 
 <div id="programs">
         <ProgramsSection />
       </div>
 
       <div id="framework">
-        <FrameworkSection />
         <Design2 />
         <LaptopShowcaseSection />
       </div>
 
       <div id="tools">
-        <TermToolsPage />
         {/* <TrustedBySlider /> */}
         <Tools />
         <ToolStackSection />
