@@ -21,7 +21,7 @@ export default function StrategyTabs() {
       {/* Tab bar */}
       <div className="sticky top-0 z-30 w-full bg-[#0a0a0a]/95 backdrop-blur border-b border-white/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center overflow-x-auto scrollbar-none gap-1 sm:gap-2 py-3">
+          <div className="grid grid-cols-2 sm:flex sm:flex-row gap-2 py-3">
             {TABS.map((tab) => {
               const isActive = active === tab.id;
               return (
@@ -29,12 +29,12 @@ export default function StrategyTabs() {
                   key={tab.id}
                   onClick={() => setActive(tab.id)}
                   className={`
-                    flex-shrink-0 px-4 sm:px-6 py-2 sm:py-2.5 rounded-full text-sm sm:text-base font-medium
-                    transition-all duration-200 whitespace-nowrap
+                    w-full sm:flex-1 px-3 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-medium
+                    transition-all duration-200 text-center
                     ${
                       isActive
                         ? "bg-violet-600 text-white shadow-lg shadow-violet-600/30"
-                        : "text-gray-400 hover:text-white hover:bg-white/10"
+                        : "text-gray-400 hover:text-white hover:bg-white/10 border border-white/10"
                     }
                   `}
                 >

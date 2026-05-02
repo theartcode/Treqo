@@ -226,20 +226,26 @@ export default function HeroSection() {
           .hero-video-card { max-width: 400px; }
         }
         @media (max-width: 768px) {
-          .hero-section { padding: 80px 6% 56px; align-items: flex-start; }
-          .hero-grid { grid-template-columns: 1fr; gap: 36px; }
-          .hero-right { order: -1; }
+          .hero-section { padding: 110px 5% 56px; align-items: flex-start; }
+          .hero-grid { grid-template-columns: 1fr; gap: 32px; }
+          .hero-left { display: flex; flex-direction: column; align-items: center; text-align: center; }
+          .hero-tagline { border-left: none !important; padding-left: 0 !important; }
+          .meta-row { justify-content: center; }
+          .stats-row { justify-content: center; }
+          .pills-row { justify-content: center; }
+          .cta-row { flex-direction: column; align-items: center; gap: 12px; }
+          .apply-btn { width: 100%; justify-content: center; }
           .hero-video-card { max-width: 100%; }
-          .trust-row { flex-wrap: wrap; gap: 16px; }
-          .trust-item { flex: 1 1 40%; border-right: none !important; padding-right: 0 !important; padding-left: 0 !important; }
+          .trust-row { flex-wrap: wrap; gap: 12px; justify-content: center; }
+          .trust-item { flex: 1 1 40%; border-right: none !important; padding-right: 0 !important; padding-left: 0 !important; text-align: center; }
           .modal-card { padding: 32px 24px; }
         }
         @media (max-width: 480px) {
-          .hero-section { padding: 72px 5% 48px; }
-          .meta-row { gap: 14px; }
-          .cta-row { flex-direction: column; align-items: flex-start; gap: 12px; }
-          .trust-item { flex: 1 1 100%; }
-          .apply-btn { width: 100%; justify-content: center; }
+          .hero-section { padding: 92px 4% 48px; }
+          .meta-row { gap: 12px; }
+          .trust-row { flex-wrap: wrap; }
+          .trust-item { flex: 1 1 45%; min-width: 0; }
+          .trust-item:last-child { flex: 0 1 50%; margin: 0 auto; }
         }
       `}</style>
 
@@ -396,7 +402,7 @@ export default function HeroSection() {
           <div className="hero-grid">
 
             {/* ── LEFT ── */}
-            <div>
+            <div className="hero-left">
               {/* EYEBROW */}
               <div style={{
                 display: 'inline-flex', alignItems: 'center', gap: '8px',
@@ -439,7 +445,7 @@ export default function HeroSection() {
               </h1>
 
               {/* TAGLINE */}
-              <p style={{
+              <p className="hero-tagline" style={{
                 fontSize: '14px', color: '#6B7280', fontWeight: 500, lineHeight: 1.7,
                 margin: '20px 0 22px', maxWidth: '420px',
                 borderLeft: '2px solid rgba(88,41,229,0.25)', paddingLeft: '14px',
