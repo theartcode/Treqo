@@ -59,7 +59,7 @@ export default function Home() {
   <WhyTreqo />
 </div>
 
-
+<Tools />
 <StrategyTabs />
 
 <div id="programs">
@@ -73,7 +73,7 @@ export default function Home() {
 
       <div id="tools">
         {/* <TrustedBySlider /> */}
-        <Tools />
+        
         <ToolStackSection />
       </div>
 

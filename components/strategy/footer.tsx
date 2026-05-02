@@ -9,8 +9,8 @@ const TacFooter = () => {
         
         {/* 1. Brand & Address Section */}
         <div className="flex flex-col gap-3">
-          <h2 className="text-3xl font-black tracking-tighter uppercase">
-            TREQO<span className="text-purple-500 font-serif italic font-medium lowercase">.</span>
+          <h2 className="text-2xl font-black tracking-tighter uppercase">
+            TREQO - The Marketing School <span className="text-purple-500 font-serif italic font-medium lowercase">.</span>
           </h2>
           <div className="flex flex-col gap-2">
             <div className="flex gap-2 group">

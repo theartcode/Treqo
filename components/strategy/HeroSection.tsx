@@ -273,7 +273,7 @@ export default function HeroSection() {
                   }}>
                     <span style={{ width: '5px', height: '5px', borderRadius: '50%', background: '#5829E5', display: 'inline-block' }} />
                     <span style={{ fontSize: '10px', fontWeight: 800, color: '#5829E5', letterSpacing: '0.15em', textTransform: 'uppercase' }}>
-                      New Age Program
+                      Treqo - The Marketing School
                     </span>
                   </div>
                   <h2 style={{ margin: '0 0 6px', fontSize: '22px', fontWeight: 900, color: '#1e1035', letterSpacing: '-0.03em' }}>
@@ -411,7 +411,7 @@ export default function HeroSection() {
               }}>
                 <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#5829E5', display: 'inline-block', flexShrink: 0 }} />
                 <span style={{ fontSize: '11px', fontWeight: 800, color: '#5829E5', letterSpacing: '0.15em', textTransform: 'uppercase', whiteSpace: 'nowrap' }}>
-                  New Age Program
+                  Treqo - The Marketing School
                 </span>
               </div>
 
@@ -481,7 +481,7 @@ export default function HeroSection() {
                   APPLY NOW <ArrowRight size={16} />
                 </button>
                 <span style={{ fontSize: '12px', color: '#9CA3AF', fontWeight: 500 }}>
-                  Next cohort starts <strong style={{ color: '#5829E5' }}>April 2026</strong>
+                  Next cohort starts <strong style={{ color: '#5829E5' }}>Every 45 days</strong>
                 </span>
               </div>
 
