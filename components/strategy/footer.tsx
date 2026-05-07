@@ -40,11 +40,11 @@ const TacFooter = () => {
             <div>
               <p className="text-[10px] font-bold uppercase tracking-widest text-purple-400 mb-1">Call Us</p>
               <a 
-                href="tel:+919966430431" 
+                href="tel:+919948000486" 
                 className="group flex items-center gap-2 text-base font-medium hover:text-purple-400 transition-colors"
               >
                 <Phone size={18} className="text-slate-500 group-hover:text-purple-400" />
-                +91 9966 430 431
+                +91 9948000486
               </a>
             </div>
           </div>
