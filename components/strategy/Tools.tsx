@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { Award, ShieldCheck, BadgeCheck, Star, Sparkles, ArrowRight, BarChart2, Search, Mail, Globe, Target, Zap } from "lucide-react";
 
@@ -128,15 +128,36 @@ function CertCard({ cert }: { cert: Cert }) {
 
 /* ─────────────────────────────────────────────
    INFINITE ROW
+   speed = pixels per second (higher = faster)
 ───────────────────────────────────────────── */
-function InfiniteRow({ certs, direction = 1, speed = 28 }: { certs: Cert[]; direction?: 1 | -1; speed?: number }) {
-  const loop = [...certs, ...certs, ...certs]; // triple for seamless
+function InfiniteRow({ certs, direction = 1, speed = 80 }: { certs: Cert[]; direction?: 1 | -1; speed?: number }) {
+  const trackRef = useRef<HTMLDivElement>(null);
+  const [setWidth, setSetWidth] = useState(0);
+
+  useEffect(() => {
+    const measure = () => {
+      if (trackRef.current) setSetWidth(trackRef.current.scrollWidth / 2);
+    };
+    measure();
+    const ro = new ResizeObserver(measure);
+    if (trackRef.current) ro.observe(trackRef.current);
+    return () => ro.disconnect();
+  }, []);
+
+  // duration = how many seconds to scroll exactly one set-width of content
+  const duration = setWidth > 0 ? setWidth / speed : 1;
+  const loop = [...certs, ...certs]; // double is enough for a seamless loop
+
   return (
     <div style={{ overflow: "hidden" }}>
       <motion.div
+        ref={trackRef}
         style={{ display: "flex", gap: 16 }}
-        animate={{ x: direction === 1 ? ["-33.33%", "0%"] : ["0%", "-33.33%"] }}
-        transition={{ duration: speed, repeat: Infinity, ease: "linear" }}
+        animate={setWidth > 0
+          ? { x: direction === 1 ? [0, -setWidth] : [-setWidth, 0] }
+          : { x: 0 }
+        }
+        transition={{ duration, repeat: Infinity, ease: "linear", repeatType: "loop" }}
       >
         {loop.map((cert, i) => <CertCard key={i} cert={cert} />)}
       </motion.div>

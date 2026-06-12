@@ -75,12 +75,9 @@ const TacFooter = () => {
       </div>
 
       {/* Bottom Copyright */}
-      <div className="max-w-7xl mx-auto mt-10 pt-6 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
-        <p className="text-[10px] text-slate-500 uppercase tracking-widest font-medium">
+      <div className="max-w-7xl mx-auto mt-10 pt-6 border-t border-white/10 flex justify-center">
+        <p className="text-[10px] text-slate-500 uppercase tracking-widest font-medium text-center">
           © 2026 Treqo. All Rights Reserved.
-        </p>
-        <p className="text-[10px] text-slate-500 uppercase tracking-widest font-medium">
-          Placements at <span className="text-purple-400/80">Meta / Google / Amazon</span>
         </p>
       </div>
     </footer>

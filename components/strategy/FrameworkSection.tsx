@@ -53,7 +53,50 @@ const steps = [
 export function FrameworkSection() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [visibleCards, setVisibleCards] = useState<boolean[]>([false, false, false, false]);
+  const [isMobile, setIsMobile] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 640);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+
+  /* ── mobile slider ── */
+  const [slideIdx, setSlideIdx] = useState(0);
+  const sliderRef = useRef<HTMLDivElement>(null);
+  const slideIdxRef = useRef(0);
+  const isHeldRef = useRef(false);
+  const autoTimerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  const scrollToSlide = (index: number) => {
+    const el = sliderRef.current;
+    if (!el) return;
+    el.scrollTo({ left: index * el.offsetWidth, behavior: "smooth" });
+    setSlideIdx(index);
+    slideIdxRef.current = index;
+  };
+
+  const stopAuto = () => {
+    if (autoTimerRef.current) { clearInterval(autoTimerRef.current); autoTimerRef.current = null; }
+  };
+  const startAuto = () => {
+    stopAuto();
+    autoTimerRef.current = setInterval(() => {
+      if (!isHeldRef.current) scrollToSlide((slideIdxRef.current + 1) % steps.length);
+    }, 3000);
+  };
+
+  useEffect(() => { if (isMobile) { startAuto(); return stopAuto; } }, [isMobile]);
+
+  const handleScroll = () => {
+    const el = sliderRef.current;
+    if (!el) return;
+    const idx = Math.round(el.scrollLeft / el.offsetWidth);
+    const c = Math.max(0, Math.min(idx, steps.length - 1));
+    setSlideIdx(c); slideIdxRef.current = c;
+  };
 
   /* ── Scroll-triggered staggered reveal ── */
   useEffect(() => {
@@ -132,8 +175,22 @@ export function FrameworkSection() {
           </h2>
         </div>
 
-        {/* ── Cards grid ── */}
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 40 }}>
+        {/* ── Cards grid / mobile slider ── */}
+        <div
+          ref={sliderRef}
+          onScroll={handleScroll}
+          onTouchStart={() => { isHeldRef.current = true; stopAuto(); }}
+          onTouchEnd={() => { isHeldRef.current = false; startAuto(); }}
+          style={isMobile ? {
+            display: "flex", flexDirection: "row",
+            overflowX: "scroll", scrollSnapType: "x mandatory",
+            WebkitOverflowScrolling: "touch" as any,
+            scrollbarWidth: "none" as any,
+            gap: 0, alignItems: "stretch",
+          } : {
+            display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 40,
+          }}
+        >
           {steps.map((step, i) => {
             const isHov = hoveredIndex === i;
             const isVisible = visibleCards[i];
@@ -141,18 +198,18 @@ export function FrameworkSection() {
             return (
               <div
                 key={i}
-                onMouseEnter={() => setHoveredIndex(i)}
-                onMouseLeave={() => setHoveredIndex(null)}
+                onMouseEnter={() => !isMobile && setHoveredIndex(i)}
+                onMouseLeave={() => !isMobile && setHoveredIndex(null)}
                 style={{
                   position: "relative",
-                  /* staggered reveal: slide up + fade in */
-                  opacity: isVisible ? 1 : 0,
-                  transform: isVisible
-                    ? isHov ? "translateY(-15px)" : "translateY(0)"
-                    : "translateY(48px)",
-                  transition: isVisible
-                    ? `opacity 0.6s ${i * 0.1}s ease, transform 0.5s cubic-bezier(0.2,1,0.3,1)`
-                    : "none",
+                  ...(isMobile ? {
+                    flex: "0 0 100%", width: "100%", height: "440px",
+                    scrollSnapAlign: "start", opacity: 1, transform: "none",
+                  } : {
+                    opacity: isVisible ? 1 : 0,
+                    transform: isVisible ? (isHov ? "translateY(-15px)" : "translateY(0)") : "translateY(48px)",
+                    transition: isVisible ? `opacity 0.6s ${i * 0.1}s ease, transform 0.5s cubic-bezier(0.2,1,0.3,1)` : "none",
+                  }),
                 }}
               >
                 {/* connector line */}
@@ -298,6 +355,19 @@ export function FrameworkSection() {
             );
           })}
         </div>
+
+        {/* mobile dots */}
+        {isMobile && (
+          <div style={{ display: "flex", justifyContent: "center", gap: 6, padding: "20px 0 8px" }}>
+            {steps.map((_, i) => (
+              <button key={i} onClick={() => scrollToSlide(i)} style={{
+                width: slideIdx === i ? 20 : 8, height: 8, borderRadius: 4,
+                background: slideIdx === i ? "#A78BFA" : "rgba(167,139,250,0.3)",
+                border: "none", cursor: "pointer", padding: 0, transition: "all 0.3s",
+              }} />
+            ))}
+          </div>
+        )}
       </div>
 
       <style jsx>{`

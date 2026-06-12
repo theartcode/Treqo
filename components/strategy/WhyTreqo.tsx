@@ -1,7 +1,7 @@
 "use client";
 
 import { Download, TrendingUp, BarChart3, Megaphone, Zap, ArrowUpRight, Sparkles } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 const placements = [
   { name: "Dikshtha", company: "BRISTLE TECH", initials: "DK", color: "#F472B6" },
@@ -26,6 +26,54 @@ export default function PortfolioProof() {
     }, 1000);
     return () => clearInterval(interval);
   }, []);
+
+  const [mobileSlide, setMobileSlide] = useState(0);
+  const sliderRef = useRef<HTMLDivElement>(null);
+  const mobileSlideRef = useRef(0);
+  const isHeldRef = useRef(false);
+  const autoTimerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const TOTAL_SLIDES = 6;
+
+  // keep ref in sync so the interval always sees the latest index
+  useEffect(() => { mobileSlideRef.current = mobileSlide; }, [mobileSlide]);
+
+  const scrollToSlide = (index: number) => {
+    const container = sliderRef.current;
+    if (!container) return;
+    const slideWidth = container.offsetWidth + 12;
+    container.scrollTo({ left: index * slideWidth, behavior: 'smooth' });
+    setMobileSlide(index);
+    mobileSlideRef.current = index;
+  };
+
+  const stopAutoSlide = () => {
+    if (autoTimerRef.current) { clearInterval(autoTimerRef.current); autoTimerRef.current = null; }
+  };
+
+  const startAutoSlide = () => {
+    stopAutoSlide();
+    autoTimerRef.current = setInterval(() => {
+      if (!isHeldRef.current) {
+        const next = (mobileSlideRef.current + 1) % TOTAL_SLIDES;
+        scrollToSlide(next);
+      }
+    }, 3000);
+  };
+
+  useEffect(() => {
+    startAutoSlide();
+    return stopAutoSlide;
+  }, []);
+
+  const handleSliderScroll = () => {
+    const container = sliderRef.current;
+    if (!container) return;
+    const slideWidth = container.offsetWidth + 12;
+    const index = Math.round(container.scrollLeft / slideWidth);
+    const clamped = Math.max(0, Math.min(index, TOTAL_SLIDES - 1));
+    setMobileSlide(clamped);
+    mobileSlideRef.current = clamped;
+  };
 
   return (
     <section className="wt-section" style={{
@@ -70,7 +118,13 @@ export default function PortfolioProof() {
         </div>
 
         {/* ── BENTO GRID ── */}
-        <div className="wt-grid" style={{
+        <div
+          className="wt-grid"
+          ref={sliderRef}
+          onScroll={handleSliderScroll}
+          onTouchStart={() => { isHeldRef.current = true; stopAutoSlide(); }}
+          onTouchEnd={() => { isHeldRef.current = false; startAutoSlide(); }}
+          style={{
           display: 'grid',
           gridTemplateColumns: '1fr 1fr 1fr 270px',
           gridTemplateRows: '1fr 1fr 50px',   /* fixed tagline row height */
@@ -287,7 +341,7 @@ export default function PortfolioProof() {
                 <span style={{ color: '#1A0B35', fontWeight: 700 }}>They care what you can deliver on Day 1.</span>
               </p>
             </div>
-            <div style={{ flexShrink: 0 }}>
+            <div className="wt-card4-btn" style={{ flexShrink: 0 }}>
               <div style={{ padding: '11px 24px', background: '#5829E5', borderRadius: '999px', fontSize: '12px', fontWeight: 800, color: 'white', letterSpacing: '0.1em', textTransform: 'uppercase', boxShadow: '0 8px 20px rgba(88,41,229,0.2)', whiteSpace: 'nowrap' }}>
                 Day 1 Ready
               </div>
@@ -355,6 +409,26 @@ export default function PortfolioProof() {
           </div>
 
         </div>
+
+        {/* ── MOBILE SLIDER DOTS ── */}
+        <div className="wt-mobile-dots" style={{ display: 'none', justifyContent: 'center', alignItems: 'center', gap: '6px', padding: '16px 0 24px' }}>
+          {Array.from({ length: TOTAL_SLIDES }).map((_, i) => (
+            <button
+              key={i}
+              onClick={() => scrollToSlide(i)}
+              style={{
+                width: mobileSlide === i ? '20px' : '8px',
+                height: '8px',
+                borderRadius: '4px',
+                background: mobileSlide === i ? '#5829E5' : '#CBD5E1',
+                border: 'none',
+                cursor: 'pointer',
+                transition: 'all 0.3s ease',
+                padding: 0,
+              }}
+            />
+          ))}
+        </div>
       </div>
 
       <style jsx>{`
@@ -374,25 +448,62 @@ export default function PortfolioProof() {
           .wt-card2    { grid-column: 1 !important;     grid-row: 2 !important; }
           .wt-card3    { grid-column: 2 !important;     grid-row: 2 !important; }
           .wt-card4    { grid-column: 1 / 3 !important; grid-row: 3 !important; }
-          .wt-card5    { grid-column: 1 / 3 !important; grid-row: 4 !important; height: 260px; }
+          .wt-card5    { grid-column: 1 / 3 !important; grid-row: 4 !important; height: auto !important; min-height: 280px; }
           .wt-tagline  { grid-column: 1 / 3 !important; grid-row: 5 !important; height: auto !important; }
-          .wt-alumni-scroll { flex: none !important; height: 200px; }
+          .wt-alumni-scroll { flex: none !important; height: 210px !important; }
           .wt-tagline-p { white-space: normal !important; text-align: center; }
         }
 
         /* ── MOBILE ≤ 640px ── */
         @media (max-width: 640px) {
-          .wt-inner   { padding-left: 4% !important; padding-right: 4% !important; padding-top: 28px !important; padding-bottom: 28px !important; }
-          .wt-grid    { grid-template-columns: 1fr !important; grid-template-rows: auto !important; gap: 10px !important; }
-          .wt-card1   { grid-column: 1 !important; grid-row: 1 !important; }
-          .wt-card2   { grid-column: 1 !important; grid-row: 2 !important; }
-          .wt-card3   { grid-column: 1 !important; grid-row: 3 !important; }
-          .wt-card4   { grid-column: 1 !important; grid-row: 4 !important; }
-          .wt-card5   { grid-column: 1 !important; grid-row: 5 !important; height: 220px; }
-          .wt-tagline { grid-column: 1 !important; grid-row: 6 !important; }
-          .wt-alumni-scroll { height: 160px; }
+          /* section wraps content naturally — no forced 100vh */
+          .wt-section { height: auto !important; min-height: auto !important; overflow: visible !important; }
+          .wt-inner   { height: auto !important; padding-left: 4% !important; padding-right: 4% !important; padding-top: 28px !important; padding-bottom: 0 !important; }
+
+          /* horizontal scroll-snap slider */
+          .wt-grid {
+            display: flex !important;
+            flex-direction: row !important;
+            overflow-x: scroll !important;
+            scroll-snap-type: x mandatory !important;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            gap: 12px !important;
+            padding-bottom: 0 !important;
+            flex: none !important;
+            height: 420px !important;
+            align-items: stretch !important;
+          }
+          .wt-grid::-webkit-scrollbar { display: none; }
+
+          /* every slide: same width, same height */
+          .wt-card1, .wt-card2, .wt-card3, .wt-card4, .wt-card5, .wt-tagline {
+            flex: 0 0 92vw !important;
+            width: 92vw !important;
+            height: 420px !important;
+            min-height: unset !important;
+            scroll-snap-align: start !important;
+            grid-column: unset !important;
+            grid-row: unset !important;
+          }
+
+          /* card4: stack text above button within fixed height */
+          .wt-card4 {
+            flex-direction: column !important;
+            align-items: flex-start !important;
+            justify-content: space-between !important;
+          }
+          .wt-card4-btn { align-self: flex-start !important; }
+
+          /* alumni scroll fills remaining card height */
+          .wt-alumni-scroll { flex: 1 !important; height: 0 !important; }
+
+          /* tagline card: center content */
+          .wt-tagline { display: flex !important; align-items: stretch !important; }
           .wt-tagline-p { white-space: normal !important; font-size: 12px !important; }
-          .wt-card4-inner { flex-direction: column !important; align-items: flex-start !important; gap: 14px !important; }
+
+          /* show dots */
+          .wt-mobile-dots { display: flex !important; }
         }
       `}</style>
     </section>

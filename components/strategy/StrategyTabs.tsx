@@ -1,20 +1,37 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Selectionprocess } from "@/components/strategy/selectionprocess";
 import TutorExperience from "@/components/strategy/TreqoTutors";
 import { FrameworkSection } from "@/components/strategy/FrameworkSection";
 import TermToolsPage from "@/components/strategy/TermToolsSection";
 
-const TABS = [
+const ALL_TABS = [
   { id: "selection", label: "Selection Process" },
-  { id: "tutors", label: "Tutor Experience" },
+  { id: "tutors",    label: "Tutor Experience" },
   { id: "framework", label: "Framework" },
-  { id: "curriculum", label: "Curriculum" },
+  { id: "curriculum",label: "Curriculum" },
 ];
+
+// only these two tabs are shown on mobile
+const MOBILE_TAB_IDS = ["selection", "framework"];
 
 export default function StrategyTabs() {
   const [active, setActive] = useState("selection");
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const check = () => {
+      const mobile = window.innerWidth < 640;
+      setIsMobile(mobile);
+      if (mobile && !MOBILE_TAB_IDS.includes(active)) setActive("selection");
+    };
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, [active]);
+
+  const tabs = isMobile ? ALL_TABS.filter(t => MOBILE_TAB_IDS.includes(t.id)) : ALL_TABS;
 
   return (
     <section className="w-full bg-[#0a0a0a]">
@@ -22,7 +39,7 @@ export default function StrategyTabs() {
       <div className="sticky top-0 z-30 w-full bg-[#0a0a0a]/95 backdrop-blur border-b border-white/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 sm:flex sm:flex-row gap-2 py-3">
-            {TABS.map((tab) => {
+            {tabs.map((tab) => {
               const isActive = active === tab.id;
               return (
                 <button
@@ -31,10 +48,9 @@ export default function StrategyTabs() {
                   className={`
                     w-full sm:flex-1 px-3 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-medium
                     transition-all duration-200 text-center
-                    ${
-                      isActive
-                        ? "bg-violet-600 text-white shadow-lg shadow-violet-600/30"
-                        : "text-gray-400 hover:text-white hover:bg-white/10 border border-white/10"
+                    ${isActive
+                      ? "bg-violet-600 text-white shadow-lg shadow-violet-600/30"
+                      : "text-gray-400 hover:text-white hover:bg-white/10 border border-white/10"
                     }
                   `}
                 >
@@ -48,9 +64,9 @@ export default function StrategyTabs() {
 
       {/* Tab panels */}
       <div className="w-full">
-        {active === "selection" && <Selectionprocess />}
-        {active === "tutors" && <TutorExperience />}
-        {active === "framework" && <FrameworkSection />}
+        {active === "selection"  && <Selectionprocess />}
+        {active === "tutors"     && <TutorExperience />}
+        {active === "framework"  && <FrameworkSection />}
         {active === "curriculum" && <TermToolsPage />}
       </div>
     </section>

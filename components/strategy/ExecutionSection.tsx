@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import {
   BarChart3, Globe, Search, Workflow,
@@ -100,9 +100,60 @@ const levelColors: Record<string, { bg: string; text: string; border: string }> 
 
 export function ToolStackSection() {
   const [hovered, setHovered] = useState<number | null>(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  /* ── mobile detection ── */
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth <= 640);
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
+
+  /* ── mobile slider ── */
+  const TOTAL_SLIDES = marketingTools.length;
+  const [mobileSlide, setMobileSlide] = useState(0);
+  const sliderRef = useRef<HTMLDivElement>(null);
+  const slideIdxRef = useRef(0);
+  const isHeldRef = useRef(false);
+  const autoTimerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  const scrollToSlide = (index: number) => {
+    const el = sliderRef.current;
+    if (!el) return;
+    // card fills the full scroll container width; gap handled via marginRight
+    el.scrollTo({ left: index * el.offsetWidth, behavior: 'smooth' });
+    setMobileSlide(index);
+    slideIdxRef.current = index;
+  };
+
+  const stopAuto = () => {
+    if (autoTimerRef.current) { clearInterval(autoTimerRef.current); autoTimerRef.current = null; }
+  };
+
+  const startAuto = () => {
+    stopAuto();
+    autoTimerRef.current = setInterval(() => {
+      if (!isHeldRef.current) {
+        const next = (slideIdxRef.current + 1) % TOTAL_SLIDES;
+        scrollToSlide(next);
+      }
+    }, 3000);
+  };
+
+  useEffect(() => { startAuto(); return stopAuto; }, []);
+
+  const handleScroll = () => {
+    const el = sliderRef.current;
+    if (!el) return;
+    const idx = Math.round(el.scrollLeft / el.offsetWidth);
+    const clamped = Math.max(0, Math.min(idx, TOTAL_SLIDES - 1));
+    setMobileSlide(clamped);
+    slideIdxRef.current = clamped;
+  };
 
   return (
-    <section style={{
+    <section className="es-section" style={{
       position: 'relative',
       background: '#E6D7F3',
       padding: '120px 0',
@@ -125,7 +176,7 @@ export function ToolStackSection() {
       <div style={{ position: 'relative', zIndex: 10, maxWidth: '1300px', margin: '0 auto', padding: '0 5%' }}>
 
         {/* HEADER */}
-        <div style={{ textAlign: 'center', marginBottom: '72px' }}>
+        <div className="es-header" style={{ textAlign: 'center', marginBottom: '72px' }}>
           <div style={{
             display: 'inline-flex', alignItems: 'center', gap: '8px',
             background: 'white', border: '1px solid rgba(255,255,255,0.6)',
@@ -153,8 +204,27 @@ export function ToolStackSection() {
           </p>
         </div>
 
-        {/* GRID */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px' }}>
+        {/* GRID / MOBILE SLIDER */}
+        <div
+          ref={sliderRef}
+          onScroll={handleScroll}
+          onTouchStart={() => { isHeldRef.current = true; stopAuto(); }}
+          onTouchEnd={() => { isHeldRef.current = false; startAuto(); }}
+          style={isMobile ? {
+            display: 'flex',
+            flexDirection: 'row',
+            overflowX: 'scroll',
+            scrollSnapType: 'x mandatory',
+            WebkitOverflowScrolling: 'touch' as any,
+            scrollbarWidth: 'none' as any,
+            height: '420px',
+            alignItems: 'stretch',
+          } : {
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+            gap: '20px',
+          }}
+        >
           {marketingTools.map((tool, i) => {
             const isHov = hovered === i;
             const lvl = levelColors[tool.level];
@@ -163,7 +233,7 @@ export function ToolStackSection() {
                 key={i}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: i * 0.05 }}
+                transition={{ duration: 0.5, delay: isMobile ? 0 : i * 0.05 }}
                 onMouseEnter={() => setHovered(i)}
                 onMouseLeave={() => setHovered(null)}
                 style={{
@@ -171,17 +241,29 @@ export function ToolStackSection() {
                   borderRadius: '28px',
                   background: isHov ? 'white' : 'rgba(255,255,255,0.4)',
                   border: `1px solid ${isHov ? 'white' : 'rgba(255,255,255,0.6)'}`,
-                  padding: '32px',
+                  padding: '28px',
                   display: 'flex',
                   flexDirection: 'column',
                   justifyContent: 'space-between',
-                  minHeight: '300px',
-                  transition: 'all 0.4s cubic-bezier(0.23, 1, 0.32, 1)',
-                  transform: isHov ? 'translateY(-8px)' : 'none',
-                  boxShadow: isHov ? '0 30px 60px rgba(124,58,237,0.15)' : '0 4px 12px rgba(0,0,0,0.02)',
                   cursor: 'default',
                   overflow: 'hidden',
-                  backdropFilter: 'blur(8px)'
+                  backdropFilter: 'blur(8px)',
+                  // desktop styles
+                  ...(!isMobile ? {
+                    minHeight: '300px',
+                    transition: 'all 0.4s cubic-bezier(0.23, 1, 0.32, 1)',
+                    transform: isHov ? 'translateY(-8px)' : 'none',
+                    boxShadow: isHov ? '0 30px 60px rgba(124,58,237,0.15)' : '0 4px 12px rgba(0,0,0,0.02)',
+                  } : {
+                    // mobile slide styles
+                    flex: '0 0 100%',
+                    width: '100%',
+                    height: '420px',
+                    minHeight: 'unset',
+                    scrollSnapAlign: 'start',
+                    boxShadow: '0 4px 12px rgba(0,0,0,0.02)',
+                    transform: 'none',
+                  }),
                 }}
               >
                 {/* Top row: icon + arrow */}
@@ -250,8 +332,28 @@ export function ToolStackSection() {
           })}
         </div>
 
+        {/* MOBILE DOTS */}
+        <div className="es-dots" style={{ display: isMobile ? 'flex' : 'none', justifyContent: 'center', alignItems: 'center', gap: '6px', padding: '20px 0 4px' }}>
+          {marketingTools.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => scrollToSlide(i)}
+              style={{
+                width: mobileSlide === i ? '20px' : '8px',
+                height: '8px',
+                borderRadius: '4px',
+                background: mobileSlide === i ? '#7C3AED' : '#C4B5FD',
+                border: 'none',
+                cursor: 'pointer',
+                padding: 0,
+                transition: 'all 0.3s ease',
+              }}
+            />
+          ))}
+        </div>
+
         {/* BOTTOM STRIP */}
-        <div style={{
+        <div className="es-strip" style={{
           marginTop: '64px',
           padding: '24px 40px',
           borderRadius: '24px',
@@ -273,6 +375,16 @@ export function ToolStackSection() {
           </div>
         </div>
       </div>
+
+      <style jsx>{`
+        /* ── MOBILE ≤ 640px ── */
+        @media (max-width: 640px) {
+          .es-section { padding: 52px 0 48px !important; }
+          .es-header  { margin-bottom: 36px !important; }
+          .es-dots    { display: flex !important; }
+          .es-strip   { flex-direction: column !important; align-items: flex-start !important; gap: 12px !important; margin-top: 28px !important; }
+        }
+      `}</style>
     </section>
   );
 }
